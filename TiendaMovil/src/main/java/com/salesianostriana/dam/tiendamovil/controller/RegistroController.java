@@ -14,25 +14,26 @@ import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 
 @Controller
 public class RegistroController {
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@GetMapping("/addUsuario")
 	public String mostrarFormLogin(Model model) {
 		model.addAttribute("registroForm", new Usuario());
-		return "registro";
+		return "registroForm";
 	}
-	
+
 	@PostMapping("/newUsuario")
 	public String nuevoUsuario(@ModelAttribute("registroForm") Usuario usuario, BindingResult bindingResult,
 			Model model) {
-		if (usuarioService.findOneByUsername(usuario.getNomUsuario()) != null || usuarioService.findOneByEmail(usuario.getCorreo()) != null) {
+		if (usuarioService.findOneByNomUsuario(usuario.getNomUsuario()) != null
+				|| usuarioService.findOneByCorreo(usuario.getCorreo()) != null) {
 			model.addAttribute("errorRegistro", "El usuario o el correo electrónico ya existe");
-			return "registro";
+			return "registroForm";
 		} else {
 			usuarioRepository.save(usuario);
 			return "redirect:/index";

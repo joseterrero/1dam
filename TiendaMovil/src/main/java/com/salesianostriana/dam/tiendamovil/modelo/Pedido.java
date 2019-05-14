@@ -29,10 +29,6 @@ public class Pedido {
 	@ManyToOne
 	private Usuario usuario;
 
-	public Pedido() {
-
-	}
-
 	public Pedido(LocalDateTime fecha, List<LineaPedido> lista, Usuario usuario) {
 		super();
 		this.fecha = fecha;

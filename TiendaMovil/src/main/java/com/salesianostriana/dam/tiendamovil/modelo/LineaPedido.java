@@ -24,10 +24,6 @@ public class LineaPedido {
 	@ManyToOne
 	private Pedido pedido;
 
-	public LineaPedido() {
-
-	}
-
 	public LineaPedido(long cantidad, Producto producto, Pedido pedido) {
 		this.cantidad = cantidad;
 		this.producto = producto;

@@ -32,10 +32,6 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario")
 	private List<Pedido> listaPed;
 
-	public Usuario() {
-
-	}
-
 	public Usuario(String nombre, String apellidos, String correo, String contrasenya, String nomUsuario,
 			boolean isEmpleado, List<Producto> lista, List<Pedido> listaPed) {
 		super();

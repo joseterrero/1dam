@@ -35,10 +35,6 @@ public class Producto {
 	@ManyToOne
 	private Usuario usuario;
 
-	public Producto() {
-
-	}
-
 	public Producto(String modelo, String color, long capacidad, long ram, LocalDateTime fecha, double precio,
 			long cantidad, List<LineaPedido> lista, Usuario usuario) {
 		this.modelo = modelo;
