@@ -16,7 +16,7 @@
 <body>
 
     <div class="container">
-        <form class="" th:action="addUsuario" method="POST" th:object="${registroForm}">
+        <form class="" th:action="@{/newUsuario}" method="POST" th:object="${formRegistro}">
             <fieldset>
 
                 <!-- Form Name -->
@@ -70,7 +70,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="">
-                            <input id="repetCorreo" name="repetCorreo" type="email" placeholder="Ej: a@a.com" class="form-control input-md" required th:field="*{correo}">
+                            <input id="repetCorreo" name="repetCorreo" type="email" placeholder="Ej: a@a.com" class="form-control input-md" required>
                         </div>
                     </div>
 
@@ -91,7 +91,7 @@
                         </label>
                         <div class="">
                             <input id="repetContrasenya" name="repetContrasenya" type="password" placeholder="Ej: usuario1234" class="form-control input-md"
-                                required th:field="*{contrasenya}">
+                                required>
                         </div>
                     </div>
 
@@ -106,6 +106,7 @@
 
             </fieldset>
         </form>
+        <p class="red-text" th:text="${errorRegistro}"></p>
     </div>
 
     <!-- Optional JavaScript -->

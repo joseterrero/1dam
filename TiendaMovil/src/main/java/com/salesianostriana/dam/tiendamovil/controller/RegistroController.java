@@ -23,12 +23,12 @@ public class RegistroController {
 
 	@GetMapping("/addUsuario")
 	public String mostrarFormLogin(Model model) {
-		model.addAttribute("registroForm", new Usuario());
+		model.addAttribute("formRegistro", new Usuario());
 		return "registroForm";
 	}
 
 	@PostMapping("/newUsuario")
-	public String nuevoUsuario(@ModelAttribute("registroForm") Usuario usuario, BindingResult bindingResult,
+	public String nuevoUsuario(@ModelAttribute("formRegistro") Usuario usuario, BindingResult bindingResult,
 			Model model) {
 		if (usuarioService.findOneByNomUsuario(usuario.getNomUsuario()) != null
 				|| usuarioService.findOneByCorreo(usuario.getCorreo()) != null) {
