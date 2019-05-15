@@ -10,13 +10,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/registroForm.css">
+    <link rel="stylesheet" href="../../css/añadirUsuarioAdmin.css">
 </head>
 
 <body>
 
     <div class="container">
-        <form class="" th:action="@{/newUsuario}" method="POST" th:object="${formRegistro}">
+        <form class="" th:action="@{/newUsuarioAdmin}" method="POST" th:object="${formRegistroAdmin}">
             <fieldset>
 
                 <!-- Form Name -->
@@ -95,12 +95,25 @@
                         </div>
                     </div>
 
-                    <!-- Button -->
+                    <!-- boolean isAdmin input-->
                     <div class="form-group">
-                        <label class=" control-label" for="registro"></label>
+                        <label class=" control-label" for="isAdmin">¿Admin?
+                            <span class="text-danger">*</span>
+                        </label>
                         <div class="">
-                            <button id="registro" name="registro" class="btn btn-primary">Registrar</button>
+                            <input id="admin" name="admin" type="radio" class="input-md" th:field="*{admin}" value="true">True
+                            <br>
+                            <input id="admin" name="admin" type="radio" class="input-md" th:field="*{admin}" value="false">False
                         </div>
+                    </div>
+
+                </div>
+
+                <!-- Button -->
+                <div class="form-group ml-5">
+                    <label class=" control-label" for="registro"></label>
+                    <div class="ml-5">
+                        <button id="registro" name="registro" class="btn btn-primary">Registrar</button>
                     </div>
                 </div>
 

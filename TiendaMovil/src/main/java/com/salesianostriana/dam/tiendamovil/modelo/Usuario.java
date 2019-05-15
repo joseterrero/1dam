@@ -25,22 +25,22 @@ public class Usuario {
 	private String correo;
 	private String contrasenya;
 	private String nomUsuario;
-	private boolean isEmpleado;
+	private boolean admin;
 
 	@OneToMany(mappedBy = "usuario")
 	private List<Producto> lista;
 	@OneToMany(mappedBy = "usuario")
 	private List<Pedido> listaPed;
 
-	public Usuario(String nombre, String apellidos, String correo, String contrasenya, String nomUsuario,
-			boolean isEmpleado, List<Producto> lista, List<Pedido> listaPed) {
+	public Usuario(String nombre, String apellidos, String correo, String contrasenya, String nomUsuario, boolean admin,
+			List<Producto> lista, List<Pedido> listaPed) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.correo = correo;
 		this.contrasenya = contrasenya;
 		this.nomUsuario = nomUsuario;
-		this.isEmpleado = isEmpleado;
+		this.admin = admin;
 		this.lista = lista;
 		this.listaPed = listaPed;
 	}
@@ -93,12 +93,12 @@ public class Usuario {
 		this.nomUsuario = nomUsuario;
 	}
 
-	public boolean isEmpleado() {
-		return isEmpleado;
+	public boolean admin() {
+		return admin;
 	}
 
-	public void setEmpleado(boolean isEmpleado) {
-		this.isEmpleado = isEmpleado;
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 	public List<Producto> getLista() {
@@ -125,7 +125,7 @@ public class Usuario {
 		result = prime * result + ((contrasenya == null) ? 0 : contrasenya.hashCode());
 		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + (isEmpleado ? 1231 : 1237);
+		result = prime * result + (admin ? 1231 : 1237);
 		result = prime * result + ((lista == null) ? 0 : lista.hashCode());
 		result = prime * result + ((listaPed == null) ? 0 : listaPed.hashCode());
 		result = prime * result + ((nomUsuario == null) ? 0 : nomUsuario.hashCode());
@@ -159,7 +159,7 @@ public class Usuario {
 			return false;
 		if (id != other.id)
 			return false;
-		if (isEmpleado != other.isEmpleado)
+		if (admin != other.admin)
 			return false;
 		if (lista == null) {
 			if (other.lista != null)
@@ -187,8 +187,8 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", correo=" + correo
-				+ ", contrasenya=" + contrasenya + ", nomUsuario=" + nomUsuario + ", isEmpleado=" + isEmpleado
-				+ ", lista=" + lista + ", listaPed=" + listaPed + "]";
+				+ ", contrasenya=" + contrasenya + ", nomUsuario=" + nomUsuario + ", admin=" + admin + ", lista="
+				+ lista + ", listaPed=" + listaPed + "]";
 	}
 
 	public void addProducto(Producto prod) {
