@@ -9,20 +9,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private UserDetailsService userDetailsService;
 	
-    CustomSuccessHandler customSuccessHandler;
- 
-	
 
-	public SecurityConfig(UserDetailsService userDetailsService, CustomSuccessHandler customSuccessHandler) {
+	public SecurityConfig(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
-		this.customSuccessHandler = customSuccessHandler;
 	}
 
 	@Bean
@@ -41,14 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/css/**","/js/**","/webjars/**", "/h2-console/**").permitAll()
+				.antMatchers("/css/**","/js/**","/webjars/**", "/h2-console/**", "/img/**").permitAll()
 				.antMatchers("/admin/**").hasAnyRole("ADMIN")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
 				.permitAll()
-				.successHandler(customSuccessHandler)
 				.and()
 			.logout()
 				.logoutUrl("/logout")
@@ -63,5 +57,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
 		
 	}
-
+	
 }

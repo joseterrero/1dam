@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.tiendamovil.modelo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +28,8 @@ public class Producto {
 	private String color;
 	private long capacidad;
 	private long ram;
-	private LocalDateTime fecha;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate fecha;
 	private double precio;
 	private long cantidad;
 
@@ -35,7 +38,7 @@ public class Producto {
 	@ManyToOne
 	private Usuario usuario;
 
-	public Producto(String modelo, String color, long capacidad, long ram, LocalDateTime fecha, double precio,
+	public Producto(String modelo, String color, long capacidad, long ram, LocalDate fecha, double precio,
 			long cantidad, List<LineaPedido> lista, Usuario usuario) {
 		this.modelo = modelo;
 		this.color = color;
@@ -88,11 +91,11 @@ public class Producto {
 		this.ram = ram;
 	}
 
-	public LocalDateTime getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

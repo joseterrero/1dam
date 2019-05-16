@@ -14,4 +14,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	public Usuario findFirstByCorreo(String correo);
 
+	public Usuario findFirstByNomUsuarioIgnoreCase(String nomUsuario);
+
+	public Usuario findFirstByNomUsuarioIgnoreCaseAndContrasenya(String nomUsuario, String contrasenya);
+
 }

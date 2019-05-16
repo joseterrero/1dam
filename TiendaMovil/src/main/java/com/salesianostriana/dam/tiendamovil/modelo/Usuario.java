@@ -1,6 +1,5 @@
 package com.salesianostriana.dam.tiendamovil.modelo;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,16 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @Entity
-public class Usuario implements UserDetails {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -213,48 +209,6 @@ public class Usuario implements UserDetails {
 	public void removePedido(Pedido pedido) {
 		this.listaPed.remove(pedido);
 		pedido.setUsuario(null);
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
