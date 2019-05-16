@@ -14,7 +14,7 @@ import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	UsuarioService usuarioService;
+	private UsuarioService usuarioService;
 
 	public UserDetailsServiceImpl(UsuarioService servicio) {
 		this.usuarioService = servicio;
