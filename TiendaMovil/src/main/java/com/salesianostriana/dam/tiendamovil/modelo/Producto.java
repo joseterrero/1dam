@@ -33,13 +33,15 @@ public class Producto {
 	private double precio;
 	private long cantidad;
 
+	private String fileUrl;
+
 	@OneToMany(mappedBy = "producto")
 	private List<LineaPedido> lista;
 	@ManyToOne
 	private Usuario usuario;
 
 	public Producto(String modelo, String color, long capacidad, long ram, LocalDate fecha, double precio,
-			long cantidad, List<LineaPedido> lista, Usuario usuario) {
+			long cantidad, String fileUrl, List<LineaPedido> lista, Usuario usuario) {
 		this.modelo = modelo;
 		this.color = color;
 		this.capacidad = capacidad;
@@ -47,6 +49,7 @@ public class Producto {
 		this.fecha = fecha;
 		this.precio = precio;
 		this.cantidad = cantidad;
+		this.fileUrl = fileUrl;
 		this.lista = lista;
 		this.usuario = usuario;
 	}
@@ -115,6 +118,14 @@ public class Producto {
 		this.cantidad = cantidad;
 	}
 
+	public String getFileUrl() {
+		return fileUrl;
+	}
+
+	public void setFileUrl(String fileUrl) {
+		this.fileUrl = fileUrl;
+	}
+
 	public List<LineaPedido> getLista() {
 		return lista;
 	}
@@ -132,76 +143,10 @@ public class Producto {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (cantidad ^ (cantidad >>> 32));
-		result = prime * result + (int) (capacidad ^ (capacidad >>> 32));
-		result = prime * result + ((color == null) ? 0 : color.hashCode());
-		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((lista == null) ? 0 : lista.hashCode());
-		result = prime * result + ((modelo == null) ? 0 : modelo.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(precio);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + (int) (ram ^ (ram >>> 32));
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Producto other = (Producto) obj;
-		if (cantidad != other.cantidad)
-			return false;
-		if (capacidad != other.capacidad)
-			return false;
-		if (color == null) {
-			if (other.color != null)
-				return false;
-		} else if (!color.equals(other.color))
-			return false;
-		if (fecha == null) {
-			if (other.fecha != null)
-				return false;
-		} else if (!fecha.equals(other.fecha))
-			return false;
-		if (id != other.id)
-			return false;
-		if (lista == null) {
-			if (other.lista != null)
-				return false;
-		} else if (!lista.equals(other.lista))
-			return false;
-		if (modelo == null) {
-			if (other.modelo != null)
-				return false;
-		} else if (!modelo.equals(other.modelo))
-			return false;
-		if (Double.doubleToLongBits(precio) != Double.doubleToLongBits(other.precio))
-			return false;
-		if (ram != other.ram)
-			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
-				return false;
-		} else if (!usuario.equals(other.usuario))
-			return false;
-		return true;
-	}
-
-	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", modelo=" + modelo + ", color=" + color + ", capacidad=" + capacidad + ", ram="
-				+ ram + ", fecha=" + fecha + ", precio=" + precio + ", cantidad=" + cantidad + ", lista=" + lista
-				+ ", usuario=" + usuario + "]";
+				+ ram + ", fecha=" + fecha + ", precio=" + precio + ", cantidad=" + cantidad + ", fileUrl=" + fileUrl
+				+ ", lista=" + lista + ", usuario=" + usuario + "]";
 	}
 
 	public void addLineaPedido(LineaPedido linPed) {

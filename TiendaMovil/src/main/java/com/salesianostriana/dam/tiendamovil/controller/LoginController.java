@@ -12,37 +12,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.salesianostriana.dam.tiendamovil.formbean.LoginUser;
 import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
+import com.salesianostriana.dam.tiendamovil.repository.UsuarioRepository;
+import com.salesianostriana.dam.tiendamovil.service.ProductoService;
 import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 
 @Controller
 public class LoginController {
 
 	@Autowired
-	private UsuarioService userService;
+	private UsuarioService usuarioService;
+	@Autowired
+	private ProductoService productoService;
+	@Autowired
+	private UsuarioRepository usuarioRepo;
 
 	@Autowired
 	private HttpSession session;
 
-	@GetMapping({ "/login" })
-	public String showLogin(Model model) {
-		if (session.getAttribute("usuarioActual") == null) {
-			model.addAttribute("loginUser", new LoginUser());
-			model.addAttribute("cuenta", new Usuario());
-			return "login";
-		} else {
-			return "redirect:/admin/añadirProductoAdmin";
-		}
+	@GetMapping("/login")
+
+	public String mostrarLogin(Model model) {
+		model.addAttribute("loginUser", new Usuario());
+		return "login";
 
 	}
 
 	@PostMapping("/checkLogin")
 	public String doLogin(@ModelAttribute("loginUser") LoginUser loginUser, BindingResult bindingResult, Model model) {
-		Usuario cuenta = userService.validateUser(loginUser.getNomUsuario(), loginUser.getContrasenya());
-		if (cuenta != null) {
-			session.setAttribute("usuarioActual", cuenta);
-			return "redirect:/admin/añadirProductoAdmin";
+
+		Usuario user = usuarioRepo.findFirstByNomUsuarioAndContrasenya(loginUser.getNomUsuario(),
+				loginUser.getContrasenya());
+
+		if (user != null && user.isAdmin()) {
+
+			session.setAttribute("usuarioActual", user);
+			return "redirect:/admin/usuariosAdmin";
+		} else if (user != null) {
+			session.setAttribute("usuarioActual", user);
+			return "redirect:/inicio";
+
 		} else {
-			model.addAttribute("cuenta", new Usuario());
 			model.addAttribute("loginError", "El usuario o contraseña no es válido");
 			return "login";
 		}
