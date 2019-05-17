@@ -44,7 +44,7 @@ public class RegistroController {
 	@GetMapping("/admin/addUsuario")
 	public String mostrarFormRegistroAdmin(Model model) {
 		model.addAttribute("formRegistroAdmin", new Usuario());
-		return "admin/añadirUsuarioAdmin";
+		return "admin/anadirUsuarioAdmin";
 	}
 
 	@PostMapping("/newUsuarioAdmin")
@@ -53,10 +53,10 @@ public class RegistroController {
 		if (usuarioService.findOneByNomUsuario(usuario.getNomUsuario()) != null
 				|| usuarioService.findOneByCorreo(usuario.getCorreo()) != null) {
 			model.addAttribute("errorRegistro", "El usuario o el correo electrónico ya existe");
-			return "admin/añadirUsuarioAdmin";
+			return "admin/anadirUsuarioAdmin";
 		} else {
 			usuarioRepository.save(usuario);
-			return "redirect:/admin/usuariosAdmin";
+			return "redirect:/admin/listUsuarios";
 		}
 
 	}

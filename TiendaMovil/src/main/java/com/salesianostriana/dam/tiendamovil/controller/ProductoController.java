@@ -25,14 +25,14 @@ public class ProductoController {
 	@GetMapping("/admin/addProducto")
 	public String mostrarFormRegistroProductoAdmin(Model model) {
 		model.addAttribute("formProductoAdmin", new Producto());
-		return "admin/añadirProductoAdmin";
+		return "admin/anadirProductoAdmin";
 	}
 
 	@PostMapping("/newProductoAdmin")
 	public String nuevoProductoAdmin(@ModelAttribute("formProductoAdmin") Producto producto,
 			BindingResult bindingResult, Model model) {
 		productRepo.save(producto);
-		return "redirect:/admin/productosAdmin";
+		return "redirect:/admin/listProductos";
 	}
 
 	// Listar
@@ -51,13 +51,13 @@ public class ProductoController {
 
 		if (aEditar != null) {
 			model.addAttribute("listaProd", aEditar);
-			return "admin/añadirProducto";
+			return "admin/anadirProductoAdmin";
 		} else {
 			return "redirect:/admin/listProductos";
 		}
 	}
 
-	@PostMapping("/editar/submit")
+	@PostMapping("/editarProd/submit")
 	public String editProducto(@ModelAttribute("listaProd") Producto producto) {
 		productService.edit(producto);
 		return "redirect:/admin/listProductos";

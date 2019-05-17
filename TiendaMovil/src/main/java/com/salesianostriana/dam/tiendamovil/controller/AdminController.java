@@ -38,23 +38,23 @@ public class AdminController {
 
 		if (aEditar != null) {
 			model.addAttribute("lista", aEditar);
-			return "admin/añadirUsuario";
+			return "admin/editUsuarioAdmin";
 		} else {
 			return "redirect:/";
 		}
 	}
 
-	@PostMapping("/editar/submit")
+	@PostMapping("/editarUsuario/submit")
 	public String editUsuario(@ModelAttribute("lista") Usuario usuario) {
 		usuarioService.edit(usuario);
-		return "redirect:/";
+		return "redirect:/admin/listUsuarios";
 	}
 
 	// Borrar
 	@GetMapping("/borrar/{id}")
 	public String borrar(@PathVariable("id") long id) {
 		usuarioService.delete(id);
-		return "redirect:/";
+		return "redirect:/admin/listUsuarios";
 	}
 
 }

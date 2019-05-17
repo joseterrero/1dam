@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Formulario de registro</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/añadirUsuarioAdmin.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <form class="" th:action="@{/admin/editarUsuario/submit}" method="POST" th:object="${lista}">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend class="text-center">Formulario de registro</legend>
+                <div class="columna">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="nombre">Nombre
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="nombre" name="nombre" type="text" placeholder="Ej: Pepe" class="form-control input-md" required th:field="*{nombre}">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="apellidos">Apellidos
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="apellidos" name="apellidos" type="text" placeholder="Ej: Pérez" class="form-control input-md" required th:field="*{apellidos}">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="nomUsuario">Nombre usuario
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="nomUsuario" name="nomUsuario" type="text" placeholder="Ej: pepePerez" class="form-control input-md" required th:field="*{nomUsuario}">
+                        </div>
+                    </div>
+
+                    <!-- Email input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="correo">Email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="correo" name="correo" type="email" placeholder="Ej: a@a.com" class="form-control input-md" required th:field="*{correo}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columna">
+                    <!-- Rep Email input-->
+                    <div class="form-group confCorreo">
+                        <label class=" control-label" for="repetCorreo">Confirmar Email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="repetCorreo" name="repetCorreo" type="email" placeholder="Ej: a@a.com" class="form-control input-md" required>
+                        </div>
+                    </div>
+
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="contrasenya">Contraseña
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="contrasenya" name="contrasenya" type="password" placeholder="Ej: usuario1234" class="form-control input-md" required th:field="*{contrasenya}">
+                        </div>
+                    </div>
+
+                    <!-- Rep Password input-->
+                    <div class="form-group confContrasenya">
+                        <label class=" control-label" for="repetContrasenya">Confirmar contraseña
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="repetContrasenya" name="repetContrasenya" type="password" placeholder="Ej: usuario1234" class="form-control input-md"
+                                required>
+                        </div>
+                    </div>
+
+                    <!-- boolean isAdmin input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="isAdmin">¿Admin?
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="admin" name="admin" type="radio" class="input-md" th:field="*{admin}" value="true">True
+                            <br>
+                            <input id="admin" name="admin" type="radio" class="input-md" th:field="*{admin}" value="false">False
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Button -->
+                <div class="form-group ml-5">
+                    <label class=" control-label" for="registro"></label>
+                    <div class="ml-5">
+                        <button id="registro" name="registro" class="btn btn-primary">Registrar</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+        <p class="text-danger" th:text="${errorRegistro}"></p>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
