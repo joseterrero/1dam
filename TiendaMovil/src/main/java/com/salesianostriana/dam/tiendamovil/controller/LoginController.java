@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.salesianostriana.dam.tiendamovil.formbean.LoginUser;
 import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
 import com.salesianostriana.dam.tiendamovil.repository.UsuarioRepository;
-import com.salesianostriana.dam.tiendamovil.service.ProductoService;
 import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 
 @Controller
@@ -21,8 +20,6 @@ public class LoginController {
 
 	@Autowired
 	private UsuarioService usuarioService;
-	@Autowired
-	private ProductoService productoService;
 	@Autowired
 	private UsuarioRepository usuarioRepo;
 
