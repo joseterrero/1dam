@@ -43,7 +43,7 @@ public class LoginController {
 		if (user != null && user.isAdmin()) {
 
 			session.setAttribute("usuarioActual", user);
-			return "redirect:/admin/usuariosAdmin";
+			return "redirect:/admin/listProductos";
 		} else if (user != null) {
 			session.setAttribute("usuarioActual", user);
 			return "redirect:/inicio";
@@ -58,7 +58,7 @@ public class LoginController {
 	@GetMapping("/logout")
 	public String doLogout(Model model) {
 		session.removeAttribute("usuarioActual");
-		return "redirect:/";
+		return "redirect:/login";
 	}
 
 }

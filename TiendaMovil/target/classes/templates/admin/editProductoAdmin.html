@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar producto</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/añadirProductoAdmin.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <form class="" th:action="@{/editarProd/submit}" method="POST" th:object="${listaProd}">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend class="text-center">Editar producto</legend>
+                <div class="columna">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="modelo">Modelo
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="modelo" name="modelo" type="text" placeholder="Ej: Samsung Galaxy s9" class="form-control input-md"
+                                required th:field="*{modelo}">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="color">Color
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="color" name="color" type="text" placeholder="Negro" class="form-control input-md"
+                                required th:field="*{color}">
+                        </div>
+                    </div>
+
+                    <!-- Number input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="capacidad">Capacidad (Gb)
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="capacidad" name="capacidad" type="number" placeholder="Ej: 64" class="form-control input-md"
+                                min="1" max="1000" required th:field="*{capacidad}">
+                        </div>
+                    </div>
+
+                    <!-- Number input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="ram">RAM (Gb)
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="ram" name="ram" type="number" placeholder="Ej: 4" class="form-control input-md"
+                                min="1" max="8" required th:field="*{ram}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columna">
+                    <!-- Date input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="fecha">Fecha Lanzamiento
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="fecha" name="fecha" type="date" class="form-control input-md" required th:field="*{fecha}">
+                        </div>
+                    </div>
+
+                    <!-- Number input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="precio">Precio (€)
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="precio" name="precio" type="number" class="form-control input-md" min="1"
+                                required th:field="*{precio}">
+                        </div>
+                    </div>
+
+                    <!-- Number input-->
+                    <div class="form-group">
+                        <label class=" control-label" for="cantidad">Cantidad
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="">
+                            <input id="cantidad" name="cantidad" type="number" class="form-control input-md" min="0"
+                                required th:field="*{cantidad}">
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group ml-5">
+                        <label class=" control-label" for="anadirProducto"></label>
+                        <div class="ml-5">
+                            <button id="anadirProducto" name="anadirProducto" class="btn btn-primary">Modificar producto</button>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

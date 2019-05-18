@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>Productos</title>
@@ -30,9 +31,10 @@
 			<!-- Dropdown -->
 			<li class="desplegable nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown"> Admin </a>
+				data-toggle="dropdown"><span sec:authentication="nomUsuario"> Admin </span></a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Cerrar sesión</a>
+					<a class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
+						sesión</a>
 				</div></li>
 		</ul>
 	</nav>

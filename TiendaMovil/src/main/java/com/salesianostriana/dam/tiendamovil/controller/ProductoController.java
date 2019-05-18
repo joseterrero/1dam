@@ -51,7 +51,7 @@ public class ProductoController {
 
 		if (aEditar != null) {
 			model.addAttribute("listaProd", aEditar);
-			return "admin/anadirProductoAdmin";
+			return "admin/editProductoAdmin";
 		} else {
 			return "redirect:/admin/listProductos";
 		}
