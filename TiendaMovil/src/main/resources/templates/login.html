@@ -2,70 +2,86 @@
 <html lang="es">
 
 <head>
-    <title>Login</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Login</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../css/login.css"
+	th:href="@{~/css/login.css}">
 </head>
 
 <body>
 
-    <main class="w-100">
-        <img class="w-50" src="../img/login.jpg" alt="imagen">
+	<main class="w-100"> <img class="w-50" src="../img/login.jpg"
+		alt="imagen" th:src="@{~/img/login.jpg}">
 
-        <form class="w-25" method="POST" th:action="@{/checkLogin}" th:object="${loginUser}">
-            <fieldset>
-                <legend class="text-center">Inicio Sesión</legend>
-                <div class="">
-                    <div id="formContent" class="text-center">
-                        <input type="text" id="username" class="mb-2 text-center" name="username" placeholder="Nombre usuario" th:field="*{nomUsuario}" th:value="*{nomUsuario}">
-                        <input type="password" id="password" class="mb-2 text-center" name="password" placeholder="Contraseña" th:field="*{contrasenya}" th:value="*{contrasenya}">
-                        <br>
-                        <p th:text="${loginError}" class="error text-center"></p>
-                        <button type="submit" class="text-center">Iniciar sesión</button>
-                        <small>
-                            <a href="registroForm.html" th:href="@{/addUsuario}">Crear cuenta</a>
-                        </small>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </main>
+	<form class="w-25" method="POST" th:action="@{/checkLogin}"
+		th:object="${loginUser}">
+		<fieldset>
+			<legend class="text-center">Inicio Sesión</legend>
+			<div class="">
+				<div id="formContent" class="text-center">
+					<input type="text" id="username" class="mb-2 text-center"
+						name="username" placeholder="Nombre usuario"
+						th:field="*{nomUsuario}" th:value="*{nomUsuario}"> <input
+						type="password" id="password" class="mb-2 text-center"
+						name="password" placeholder="Contraseña" th:field="*{contrasenya}"
+						th:value="*{contrasenya}"> <br>
+					<p th:text="${loginError}" class="error text-center"></p>
+					<button type="submit" class="text-center">Iniciar sesión</button>
+					<small> <a href="registroForm.html"
+						th:href="@{/addUsuario}">Crear cuenta</a>
+					</small>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+	</main>
 
-    <footer class="w-100 mt-5">
-        <p>Autor: Jose Manuel Terrero</p>
-        <p>Email de contacto: josetg999@gmail.com</p>
-        <p>
-            <a href="#">Aviso Legal</a>
-        </p>
-        <p>Redes Sociales:
-            <a href="https://twitter.com/jose_terrero99">
-                <img src="../img/twitter.png" alt="Cuenta personal de Twitter" class="text-hide rounded-circle">
-            </a>
-            &nbsp
-            <a href="https://www.facebook.com/joseterrero99">
-                <img src="../img/facebook.jpg" alt="Cuenta personal de Facebook" class="text-hide rounded-circle">
-            </a>
-            &nbsp
-            <a href="https://www.instagram.com/jose_terrero99">
-                <img src="../img/insta.png" alt="Cuenta personal de Instagram" class="text-hide rounded-circle">
-            </a>
-        </p>
-    </footer>
+	<footer class="w-100 mt-5">
+		<p>Autor: Jose Manuel Terrero</p>
+		<p>Email de contacto: josetg999@gmail.com</p>
+		<p>
+			<a href="#">Aviso Legal</a>
+		</p>
+		<p>
+			Redes Sociales: <a href="https://twitter.com/jose_terrero99"> <img
+				src="../img/twitter.png" alt="Cuenta personal de Twitter"
+				class="text-hide rounded-circle"
+				th:src="@{/resources/img/twitter.png}">
+			</a> &nbsp <a href="https://www.facebook.com/joseterrero99"> <img
+				src="../img/facebook.jpg" alt="Cuenta personal de Facebook"
+				class="text-hide rounded-circle"
+				th:src="@{/resources/img/facebook.jpg}">>
+			</a> &nbsp <a href="https://www.instagram.com/jose_terrero99"> <img
+				src="../img/insta.png" alt="Cuenta personal de Instagram"
+				class="text-hide rounded-circle"
+				th:src="@{/resources/img/insta.png}">>
+			</a>
+		</p>
+	</footer>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>

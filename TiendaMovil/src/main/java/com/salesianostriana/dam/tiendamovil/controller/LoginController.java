@@ -22,12 +22,10 @@ public class LoginController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private UsuarioRepository usuarioRepo;
-
 	@Autowired
 	private HttpSession session;
 
 	@GetMapping("/login")
-
 	public String mostrarLogin(Model model) {
 		model.addAttribute("loginUser", new Usuario());
 		return "login";
