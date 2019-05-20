@@ -15,13 +15,13 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="../css/login.css"
-	th:href="@{~/css/login.css}">
+	th:href="@{/css/login.css}">
 </head>
 
 <body>
 
-	<main class="w-100"> <img class="w-50" src="../img/login.jpg"
-		alt="imagen" th:src="@{~/img/login.jpg}">
+	<main class="w-100"> <img class="w-50" src="/img/login.jpg"
+		alt="imagen" th:src="@{../img/login.jpg}">
 
 	<form class="w-25" method="POST" th:action="@{/checkLogin}"
 		th:object="${loginUser}">
