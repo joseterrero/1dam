@@ -12,11 +12,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class MvcConfig // extends WebMvcConfigurerAdapter 
 implements WebMvcConfigurer {
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/login");
-		registry.addViewController("/acceso-denegado");
-	}
+//	@Override
+//	public void addViewControllers(ViewControllerRegistry registry) {
+//		registry.addViewController("/login");
+//		registry.addViewController("/acceso-denegado");
+//	}
 	
 //	@Override
 //	public void addResourceHandlers(ResourceHandlerRegistry registry) {

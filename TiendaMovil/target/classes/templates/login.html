@@ -32,7 +32,7 @@
 						name="loginUser.nomUsuario" th:field="*{nomUsuario}" placeholder="Nombre usuario"> <input
 						type="password" id="contrasenya" class="mb-2 text-center"
 						name="loginUser.contrasenya" th:field="*{contrasenya}" placeholder="Contraseña"> <br>
-					<p th:text="${loginError}" class="error text-center"></p>
+					<p th:text="${loginError}" class="error text-danger text-center"></p>
 					<button type="submit" class="text-center">Iniciar sesión</button>
 					<br>
 					<small> <a href="registroForm.html"
