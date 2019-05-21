@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.tiendamovil.modelo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,15 +23,15 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-	private LocalDateTime fecha;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate fecha;
 
 	@OneToMany(mappedBy = "pedido")
 	private List<LineaPedido> lista;
 	@ManyToOne
 	private Usuario usuario;
 
-	public Pedido(LocalDateTime fecha, List<LineaPedido> lista, Usuario usuario) {
+	public Pedido(LocalDate fecha, List<LineaPedido> lista, Usuario usuario) {
 		super();
 		this.fecha = fecha;
 		this.lista = lista;
@@ -44,11 +46,11 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public LocalDateTime getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

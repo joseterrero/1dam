@@ -12,8 +12,32 @@ footer {
 	background-color: grey;
 }
 
+footer p{
+	margin-left: 1%;
+}
+
 body {
 	height: 100vh;
+}
+
+.fondo{
+	width: 60%;
+	padding-left: 4%;
+}
+
+form{
+	width: 30%;
+	float: left;
+	padding-top: 11%;
+	padding-left: 3%;
+}
+
+small a{
+	padding-left: 35%;
+}
+
+button{
+	padding-left: 10%;
 }
 
 a:visited, a:active {

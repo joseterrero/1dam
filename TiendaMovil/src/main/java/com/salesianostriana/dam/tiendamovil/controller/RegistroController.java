@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.tiendamovil.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +31,10 @@ public class RegistroController {
 	@PostMapping("/newUsuario")
 	public String nuevoUsuario(@ModelAttribute("formRegistro") Usuario usuario, BindingResult bindingResult,
 			Model model) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+		usuario.setContrasenya(passwordEncoder.encode(usuario.getContrasenya()));
+
 		if (usuarioService.findOneByNomUsuario(usuario.getNomUsuario()) != null
 				|| usuarioService.findOneByCorreo(usuario.getCorreo()) != null) {
 			model.addAttribute("errorRegistro", "El usuario o el correo electrónico ya existe");
@@ -50,6 +55,10 @@ public class RegistroController {
 	@PostMapping("/newUsuarioAdmin")
 	public String nuevoUsuarioAdmin(@ModelAttribute("formRegistroAdmin") Usuario usuario, BindingResult bindingResult,
 			Model model) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+		usuario.setContrasenya(passwordEncoder.encode(usuario.getContrasenya()));
+
 		if (usuarioService.findOneByNomUsuario(usuario.getNomUsuario()) != null
 				|| usuarioService.findOneByCorreo(usuario.getCorreo()) != null) {
 			model.addAttribute("errorRegistro", "El usuario o el correo electrónico ya existe");

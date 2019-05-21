@@ -1,0 +1,20 @@
+ul.navbar-nav{
+    width: 100%;
+}
+
+li.carrito{
+    padding-left: 68%;
+}
+
+section{
+    padding-left: 9%;
+}
+
+.usuario{
+    width: 18%;
+    float: right;
+}
+
+.info{
+    margin-top: 3%;
+}

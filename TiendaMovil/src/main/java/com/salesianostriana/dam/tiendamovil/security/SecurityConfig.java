@@ -36,11 +36,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/css/**","/js/**","/webjars/**", "/h2-console/**", "/img/**", "/inicio").permitAll()
+				.antMatchers("/css/**","/js/**","/webjars/**", "/h2-console/**", "/img/**", "/inicio", "/addUsuario").permitAll()
 				.antMatchers("/admin/**").hasAnyRole("ADMIN")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
+			.defaultSuccessUrl("/galeria")
 				.loginPage("/login")
 				.permitAll()
 				.and()
@@ -54,8 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// Añadimos esto para poder seguir accediendo a la consola de H2
 		// con Spring Security habilitado.
 		http.csrf().disable();
-        http.headers().frameOptions().disable();
-		
+        http.headers().frameOptions().disable();		
 	}
 	
 }

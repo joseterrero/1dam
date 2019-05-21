@@ -1,0 +1,12 @@
+ul.navbar-nav{
+    width: 100%;
+}
+
+li.carrito{
+    padding-left: 66%;
+}
+
+.carousel-control-prev, .carousel-control-next{
+    background-color: black;
+}
+
