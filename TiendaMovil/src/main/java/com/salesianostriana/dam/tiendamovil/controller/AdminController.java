@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.tiendamovil.formbean.SearchBean;
 import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
 import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 
@@ -25,6 +26,7 @@ public class AdminController {
 	// Listar
 	@GetMapping({ "/", "/listUsuarios" })
 	public String listarTodos(Model model) {
+		model.addAttribute("inputBuscar", new SearchBean());
 		model.addAttribute("lista", usuarioService.findAll());
 		return "admin/usuariosAdmin";
 
@@ -55,6 +57,13 @@ public class AdminController {
 	public String borrar(@PathVariable("id") long id) {
 		usuarioService.delete(id);
 		return "redirect:/admin/listUsuarios";
+	}
+
+	// Buscar
+	@PostMapping("/buscarUsuario")
+	public String buscarUsuario(@ModelAttribute("inputBuscar") SearchBean s, Model model) {
+		model.addAttribute("lista", usuarioService.findOneByNomUsuario(s.getSearch()));
+		return "admin/usuariosAdmin";
 	}
 
 }

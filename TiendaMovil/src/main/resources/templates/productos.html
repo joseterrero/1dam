@@ -28,7 +28,7 @@
 			<li class="nav-item"><a class="nav-link" href="inicio.html"
 				th:href="@{/inicio}">Inicio</a></li>
 			<li class="nav-item active"><a class="nav-link" href="#"
-				th:href="@{/productos}">Productos</a></li>
+				th:href="@{/list}">Productos</a></li>
 			<li class="nav-item"><a class="nav-link" href="galeria.html"
 				th:href="@{/galeria}">Galería</a></li>
 			<li class="nav-item"><a class="nav-link" href="informacion.html"
@@ -55,14 +55,14 @@
 	</nav>
 
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<form class="form-inline" action="#">
-			<input class="form-control mr-sm-2" type="text" placeholder="Search">
-			<button class="btn btn-success" type="submit">Search</button>
+		<form class="form-inline" action="#" th:action="@{search}" th:object="${inputBuscar}" method="POST">
+			<input class="form-control mr-sm-2" type="text" name="nombre" placeholder="Search" th:field="*{search}">
+			<button class="btn btn-success" type="submit">Buscar</button>
 		</form>
 	</nav>
 
 	<div class="col-lg-3 col-md-6 mb-lg-0 mb-4 mt-4"
-		th:each="producto: ${productos}">
+		th:each="producto: ${listaProd}">
 		<div class="card m-4" style="width: 18rem;">
 			<img class="card-img-top" src="../img/movil1.png"
 				th:src="${producto.fileUrl}" alt="Card image cap">

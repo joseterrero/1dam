@@ -25,6 +25,18 @@ public class ProductoService extends BaseService<Producto, Long, ProductoReposit
 		return repositorio.save(prod); 
 	}
 	
+	public List<Producto> findAllProducts() {
+		return repositorio.findAll();
+	}
+	
+//	public Producto findById(Long id) {
+//		return repositorio.findOne(id);
+//	}
+
+	public List<Producto> findByModelo(String modelo){
+		return repositorio.findByModeloContainingIgnoreCase(modelo);
+	}
+	
 //	public Page<Producto> findAllPageable(Pageable pageable){
 //		return repositorio.findAll(pageable);
 //	}

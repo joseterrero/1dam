@@ -43,8 +43,10 @@
 	</nav>
 
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<form class="form-inline" action="#">
-			<input class="form-control mr-sm-2" type="text" placeholder="Search">
+		<form class="form-inline" action="#" method="POST"
+			th:action="@{/admin/buscarProducto}" th:object="${inputBuscar}">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search"
+				th:field="*{search}" th:value="*{search}">
 			<button class="btn btn-success" type="submit">Search</button>
 		</form>
 	</nav>
