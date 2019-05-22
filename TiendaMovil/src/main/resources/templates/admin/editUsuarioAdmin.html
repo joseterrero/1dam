@@ -21,12 +21,15 @@
 <body>
 
 	<div class="container">
-		<form class="" th:action="@{/admin/editarUsuario/submit}"
+		<form class=""
+			th:action="${lista.id != 0} ? @{/admin/editarUsuario/submit} : @{/admin/newUsuarioAdmin}"
 			method="POST" th:object="${lista}">
 			<fieldset>
 
 				<!-- Form Name -->
 				<legend class="text-center">Editar usuario</legend>
+				<input th:if="${lista.id != 0}" type="hidden" name="id"
+					th:field="*{id}" />
 				<div class="columna">
 					<!-- Text input-->
 					<div class="form-group">
@@ -132,7 +135,7 @@
 				<div class="form-group ml-5">
 					<label class=" control-label" for="registro"></label>
 					<div class="ml-5">
-						<button id="registro" name="registro" class="btn btn-primary">Modificar
+						<button id="register" name="registro" class="btn btn-primary">Modificar
 							Usuario</button>
 					</div>
 				</div>
@@ -144,6 +147,7 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script type="text/javascript" th:src="@{/js/registro.js}" src="/js/registro.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

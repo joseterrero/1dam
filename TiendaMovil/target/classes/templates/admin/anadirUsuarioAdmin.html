@@ -21,7 +21,7 @@
 <body>
 
 	<div class="container">
-		<form class="" th:action="@{/newUsuarioAdmin}" method="POST"
+		<form class="" th:action="@{/admin/newUsuarioAdmin}" method="POST"
 			th:object="${formRegistroAdmin}">
 			<fieldset>
 
@@ -132,7 +132,7 @@
 				<div class="form-group ml-5">
 					<label class=" control-label" for="registro"></label>
 					<div class="ml-5">
-						<button id="registro" name="registro" class="btn btn-primary">Registrar</button>
+						<button id="register" name="registro" class="btn btn-primary">Registrar</button>
 					</div>
 				</div>
 
@@ -143,6 +143,7 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script type="text/javascript" th:src="@{/js/registro.js}" src="/js/registro.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

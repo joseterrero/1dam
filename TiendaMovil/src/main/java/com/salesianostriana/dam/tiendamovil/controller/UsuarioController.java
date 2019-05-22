@@ -10,11 +10,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.tiendamovil.modelo.Pager;
 import com.salesianostriana.dam.tiendamovil.modelo.Producto;
+import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
 import com.salesianostriana.dam.tiendamovil.service.ProductoService;
+import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 
 @Controller
 public class UsuarioController {
@@ -28,6 +33,28 @@ public class UsuarioController {
 	private ProductoService prodService;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private UsuarioService usuarioService;
+
+	// Editar
+	@GetMapping("/editar/{id}")
+	public String mostrarFormularioEdit(@PathVariable("id") long id, Model model) {
+
+		Usuario aEditar = usuarioService.findById(id);
+
+		if (aEditar != null) {
+			model.addAttribute("formRegistro", aEditar);
+			return "admin/addUsuario";
+		} else {
+			return "redirect:/";
+		}
+	}
+
+	@PostMapping("/editarUsuario/submit")
+	public String editUsuario(@ModelAttribute("formRegistro") Usuario usuario) {
+		usuarioService.edit(usuario);
+		return "redirect:/";
+	}
 
 	// vista estatica galeria
 	@GetMapping("/galeria")
@@ -69,7 +96,7 @@ public class UsuarioController {
 //		model.addAttribute("pageSizes", PAGE_SIZES);
 //		model.addAttribute("pager", pager);
 
-		return "persons";
+		return "productos";
 
 	}
 

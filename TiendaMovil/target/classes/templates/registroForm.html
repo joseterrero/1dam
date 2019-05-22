@@ -14,19 +14,22 @@
 	th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/registroForm.css"
+<link rel="stylesheet" type="text/css" href="../css/registroForm.css"
 	th:href="@{/css/registroForm.css}">
 </head>
 
 <body>
 
 	<div class="container">
-		<form class="" th:action="@{/newUsuario}" method="POST"
-			th:object="${formRegistro}">
+		<form class=""
+			th:action="${formRegistro.id != 0} ? @{/editarUsuario/submit} : @{/newUsuario}"
+			method="POST" th:object="${formRegistro}">
 			<fieldset>
 
 				<!-- Form Name -->
 				<legend class="text-center">Formulario de registro</legend>
+				<input th:if="${formRegistro.id != 0}" type="hidden" name="id"
+					th:field="*{id}" />
 				<div class="columna">
 					<!-- Text input-->
 					<div class="form-group">
@@ -117,7 +120,7 @@
 					<div class="form-group">
 						<label class=" control-label" for="registro"></label>
 						<div class="">
-							<button id="registro" name="registro" class="btn btn-primary">Registrar</button>
+							<button id="register" name="registro" class="btn btn-primary">Registrar</button>
 						</div>
 					</div>
 				</div>
@@ -129,16 +132,19 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	<script type="text/javascript" th:src="@{/js/registro.js}"
+		src="/js/registro.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-	<script
+	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 		th:src="@{/webjars/popper.js/1.14.7/dist/umd/popper.min.js}"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 		crossorigin="anonymous"></script>
-	<script
+	<script type="text/javascript"
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"

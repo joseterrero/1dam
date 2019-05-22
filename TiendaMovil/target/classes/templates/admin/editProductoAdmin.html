@@ -21,12 +21,15 @@
 <body>
 
 	<div class="container">
-		<form class="" th:action="@{/editarProd/submit}" method="POST"
-			th:object="${listaProd}">
+		<form class=""
+			th:action="${listaProd.id != 0} ? @{/admin/editarProd/submit} : @{/admin/newProductoAdmin}"
+			method="POST" th:object="${listaProd}">
 			<fieldset>
 
 				<!-- Form Name -->
 				<legend class="text-center">Editar producto</legend>
+				<input th:if="${listaProd.id != 0}" type="hidden" name="id"
+					th:field="*{id}" />
 				<div class="columna">
 					<!-- Text input-->
 					<div class="form-group">

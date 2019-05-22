@@ -46,8 +46,9 @@
 				data-toggle="dropdown" sec:authentication="nomUsuario"> Usuario
 			</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Editar perfil</a> <a
-						class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
+					<a class="dropdown-item" href="#"
+						th:href="@{/admin/editar/{id}(id=${Usuario.id})}">Editar
+						perfil</a> <a class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
 						sesión</a>
 				</div></li>
 		</ul>

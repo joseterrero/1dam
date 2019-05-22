@@ -46,11 +46,19 @@
 				data-toggle="dropdown" sec:authentication="nomUsuario"> Usuario
 			</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Editar perfil</a> <a
-						class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
+					<a class="dropdown-item" href="#"
+						th:href="@{/admin/editar/{id}(id=${Usuario.id})}">Editar
+						perfil</a> <a class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
 						sesión</a>
 				</div></li>
 		</ul>
+	</nav>
+
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<form class="form-inline" action="#">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search">
+			<button class="btn btn-success" type="submit">Search</button>
+		</form>
 	</nav>
 
 	<div class="col-lg-3 col-md-6 mb-lg-0 mb-4 mt-4"

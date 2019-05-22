@@ -28,7 +28,7 @@ public class ProductoController {
 		return "admin/anadirProductoAdmin";
 	}
 
-	@PostMapping("/newProductoAdmin")
+	@PostMapping("/admin/newProductoAdmin")
 	public String nuevoProductoAdmin(@ModelAttribute("formProductoAdmin") Producto producto,
 			BindingResult bindingResult, Model model) {
 		productRepo.save(producto);
@@ -57,7 +57,7 @@ public class ProductoController {
 		}
 	}
 
-	@PostMapping("/editarProd/submit")
+	@PostMapping("/admin/editarProd/submit")
 	public String editProducto(@ModelAttribute("listaProd") Producto producto) {
 		productService.edit(producto);
 		return "redirect:/admin/listProductos";
