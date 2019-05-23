@@ -46,14 +46,20 @@ public class UsuarioController {
 
 	// vista estatica galeria
 	@GetMapping("/galeria")
-	public String mostrarGaleria(Model model) {
+	public String mostrarGaleria() {
 		return "galeria";
 	}
 
 	// vista estatica informacion
 	@GetMapping("/info")
-	public String mostrarInfo(Model model) {
+	public String mostrarInfo() {
 		return "informacion";
+	}
+
+	// vista estatica inicio
+	@GetMapping("/inicio")
+	public String mostrarInicio() {
+		return "inicio";
 	}
 
 }

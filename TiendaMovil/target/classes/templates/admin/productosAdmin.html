@@ -67,6 +67,7 @@
 				<th scope="col">Fecha</th>
 				<th scope="col">Precio</th>
 				<th scope="col">Cantidad</th>
+				<th scope="col">FileUrl</th>
 				<th scope="col"></th>
 			</tr>
 		</thead>
@@ -80,6 +81,7 @@
 				<td th:text="${prod.fecha}">fecha</td>
 				<td th:text="${prod.precio}">precio</td>
 				<td th:text="${prod.cantidad}">cantidad</td>
+				<td th:text="${prod.fileUrl}">fileUrl</td>
 				<td><a href="#"
 					th:href="@{/admin/editarProd/{id}(id=${prod.id})}">Editar</a> | <a
 					href="#" th:href="@{/admin/borrarProd/{id}(id=${prod.id})}">Borrar</a></td>

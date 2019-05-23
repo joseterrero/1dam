@@ -26,12 +26,12 @@ public class LoginController {
 	@Autowired
 	private HttpSession session;
 
-//	@GetMapping("/login")
-//	public String mostrarLogin(Model model) {
+	@GetMapping("/login")
+	public String mostrarLogin(Model model) {
 //		model.addAttribute("loginUser", new Usuario());
-//		return "login";
-//
-//	}
+		return "login";
+
+	}
 //
 //	@PostMapping("/checkLogin")
 //	public String doLogin(@ModelAttribute("loginUser") Usuario usuario, Model model) {

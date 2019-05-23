@@ -111,17 +111,24 @@
 								th:field="*{cantidad}">
 						</div>
 					</div>
-
-					<!-- Button -->
-					<div class="form-group ml-5">
-						<label class=" control-label" for="anadirProducto"></label>
-						<div class="ml-5">
-							<button id="anadirProducto" name="anadirProducto"
-								class="btn btn-primary">Añadir producto</button>
+					<!-- Input type file -->
+					<div class="form-group">
+						<label class=" control-label" for="archivo">Subir archivo</label>
+						<div class="">
+							<input id="archivo" name="archivo" type="file" th:field="*{fileUrl}"
+								class="form-control input-md btn btn-primary">
+							</input>
 						</div>
 					</div>
 				</div>
-
+				<!-- Button -->
+				<div class="form-group ml-5">
+					<label class=" control-label" for="anadirProducto"></label>
+					<div class="ml-5">
+						<button id="anadirProducto" name="anadirProducto"
+							class="btn btn-primary">Añadir producto</button>
+					</div>
+				</div>
 			</fieldset>
 		</form>
 	</div>

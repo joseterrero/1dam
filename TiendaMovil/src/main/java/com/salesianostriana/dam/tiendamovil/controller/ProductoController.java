@@ -7,14 +7,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.salesianostriana.dam.tiendamovil.formbean.SearchBean;
+import com.salesianostriana.dam.tiendamovil.formbean.UploadFormBean;
 import com.salesianostriana.dam.tiendamovil.modelo.Producto;
 import com.salesianostriana.dam.tiendamovil.repository.ProductoRepository;
 import com.salesianostriana.dam.tiendamovil.service.ProductoService;
@@ -41,9 +42,31 @@ public class ProductoController {
 	}
 
 	@PostMapping("/admin/newProductoAdmin")
-	public String nuevoProductoAdmin(@ModelAttribute("formProductoAdmin") Producto producto,
-			BindingResult bindingResult, Model model) {
-		productRepo.save(producto);
+	public String nuevoProductoAdmin(@ModelAttribute("formProductoAdmin") UploadFormBean uploadBean, Producto producto,
+			MultipartFile file, Model model) {
+//		productRepo.save(producto);
+		/*
+		 * Creamos un objeto PojoConFichero, pero debemos tener en cuenta, que en este
+		 * caso no es como en anteriores donde era el objeto modal completo recogido en
+		 * el formulario, sino que le falta la parte del archivo
+		 */
+
+		Producto p = new Producto();
+		// Seteamos a ese p el nombre recogido del campo de la propiedad cualquiera,
+		// en este caso solo un text.
+		p.setModelo(uploadBean.getModelo());
+		p.setColor(uploadBean.getColor());
+		p.setCapacidad(uploadBean.getCapacidad());
+		p.setRam(uploadBean.getRam());
+		p.setFecha(uploadBean.getFecha());
+		p.setPrecio(uploadBean.getPrecio());
+		p.setCantidad(uploadBean.getCantidad());
+		// Usamos el servicio de subida para guardar en la BD el objeto POJO por un lado
+		// y lo recogido del archivo por otro. Eso es lo que se le da a add y este a su
+		// vez,
+		// si se mira en el UploadConPojoService usa los dos parámteros para guardar
+		// "todo el pojo completo, propiedad y archivo).
+		productService.add(p, file);
 		return "redirect:/admin/listProductos";
 	}
 
@@ -82,7 +105,7 @@ public class ProductoController {
 		productService.delete(id);
 		return "redirect:/admin/listProductos";
 	}
-	
+
 	// Buscar
 	@PostMapping("/admin/buscarProducto")
 	public String buscarProducto(@ModelAttribute("inputBuscar") SearchBean s, Model model) {
@@ -136,21 +159,5 @@ public class ProductoController {
 		model.addAttribute("listaProd", productService.findByModelo(searchBean.getSearch()));
 		return "productos";
 	}
-
-//	// BUSCAR
-//	@GetMapping("/list")
-//	public String productList(Model model) {
-//
-//		model.addAttribute("productos", productService.findAllProducts());
-//
-//		/*
-//		 * La siguiente línea viene del último método, que se dedica a buscar, para que
-//		 * este método, muestre también el listado de productos cuando se han buscado,
-//		 * añadimos al model el objeto tipo bean de búsqueda cuando se está buscando
-//		 * algún producto
-//		 */
-//		model.addAttribute("searchForm", new SearchBean());
-//		return "productos";
-//	}
 
 }
