@@ -24,9 +24,9 @@ public class TiendaMovilApplication {
 			u.setAdmin(true);
 			u.setNombre("admin");
 			u.setApellidos("admin");
-			u.setNomUsuario("admin");
+			u.setUsername("admin");
 			u.setCorreo("admin@admin.com");
-			u.setContrasenya(passwordEncoder.encode("admin"));
+			u.setPassword(passwordEncoder.encode("admin"));
 
 			servicio.save(u);
 
@@ -34,11 +34,12 @@ public class TiendaMovilApplication {
 			a.setAdmin(false);
 			a.setNombre("usuario");
 			a.setApellidos("usuario");
-			a.setNomUsuario("usuario");
+			a.setUsername("usuario");
 			a.setCorreo("usuario@usuario.com");
-			a.setContrasenya(passwordEncoder.encode("1234"));
+			a.setPassword(passwordEncoder.encode("1234"));
 
 			servicio.save(a);
+
 		};
 	}
 

@@ -74,9 +74,9 @@
 				<th th:text="${usuario.id}" scope="row">1</th>
 				<td th:text="${usuario.nombre}">nombre</td>
 				<td th:text="${usuario.apellidos}">apellidos</td>
-				<td th:text="${usuario.nomUsuario}">nomUsu</td>
+				<td th:text="${usuario.username}">nomUsu</td>
 				<td th:text="${usuario.correo}">email</td>
-				<td th:text="${usuario.contrasenya}">contraseña</td>
+				<td th:text="${usuario.password}">contraseña</td>
 				<td th:text="${usuario.admin}">isAdmin</td>
 				<td><a href="#"
 					th:href="@{/admin/editar/{id}(id=${usuario.id})}">Editar</a> | <a

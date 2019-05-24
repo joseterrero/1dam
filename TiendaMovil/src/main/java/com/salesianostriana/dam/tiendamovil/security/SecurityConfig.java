@@ -12,8 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-	private UserDetailsService userDetailsService;
+	
+private UserDetailsService userDetailsService;
 	
 
 	public SecurityConfig(UserDetailsService userDetailsService) {
@@ -36,8 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/css/**","/js/**","/webjars/**", "/h2-console/**", "/img/**", "/inicio", "/addUsuario", "/newUsuario", "/admin/listProductos", "/admin/addProducto", "/admin/newProductoAdmin").permitAll()
-				.antMatchers("admin").hasAnyRole("ADMIN")
+				.antMatchers("/css/**","/js/**","/webjars/**", "/h2-console/**", "/img/**", "/inicio", "/addUsuario", "/newUsuario").permitAll()
+				.antMatchers("/admin/**").hasAnyRole("ADMIN")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
@@ -50,6 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.exceptionHandling()
 				.accessDeniedPage("/acceso-denegado");
+		
+		
 		
 		// Añadimos esto para poder seguir accediendo a la consola de H2
 		// con Spring Security habilitado.

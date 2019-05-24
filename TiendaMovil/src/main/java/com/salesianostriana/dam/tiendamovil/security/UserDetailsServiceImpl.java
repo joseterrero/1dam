@@ -21,16 +21,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String nomUsuario) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Usuario usuario = usuarioService.findOneByNomUsuario(nomUsuario);
+		Usuario usuario = usuarioService.findOneByUsername(username);
 
 		UserBuilder userBuilder = null;
 
 		if (usuario != null) {
-			userBuilder = User.withUsername(usuario.getNomUsuario());
+			userBuilder = User.withUsername(usuario.getUsername());
 			userBuilder.disabled(false);
-			userBuilder.password(usuario.getContrasenya());
+			userBuilder.password(usuario.getPassword());
 			if (usuario.isAdmin()) {
 				// Este caso indica que un ADMIN también puede hacer todo lo que hace un USER
 				userBuilder.authorities(new SimpleGrantedAuthority("ROLE_USER"),

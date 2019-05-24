@@ -23,8 +23,8 @@ public class Usuario {
 	private String nombre;
 	private String apellidos;
 	private String correo;
-	private String contrasenya;
-	private String nomUsuario;
+	private String password;
+	private String username;
 	private boolean isAdmin;
 
 	@OneToMany(mappedBy = "usuario")
@@ -32,14 +32,14 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario")
 	private List<Pedido> listaPed;
 
-	public Usuario(String nombre, String apellidos, String correo, String contrasenya, String nomUsuario, boolean admin,
+	public Usuario(String nombre, String apellidos, String correo, String password, String username, boolean admin,
 			List<Producto> lista, List<Pedido> listaPed) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.correo = correo;
-		this.contrasenya = contrasenya;
-		this.nomUsuario = nomUsuario;
+		this.password = password;
+		this.username = username;
 		this.isAdmin = admin;
 		this.lista = lista;
 		this.listaPed = listaPed;

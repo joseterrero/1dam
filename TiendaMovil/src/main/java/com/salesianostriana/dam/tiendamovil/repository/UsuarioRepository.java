@@ -8,16 +8,16 @@ import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-	public Usuario findFirstByNomUsuarioAndContrasenya(String nomUsuario, String contrasenya);
+	public Usuario findFirstByUsernameAndPassword(String username, String password);
 
 	public List<Usuario> findByNombreContainingIgnoreCase(String nombre);
 
-	public Usuario findFirstByNomUsuario(String nomUsuario);
+	public Usuario findFirstByUsername(String username);
 
 	public Usuario findFirstByCorreo(String correo);
 
-	public Usuario findFirstByNomUsuarioIgnoreCase(String nomUsuario);
+	public Usuario findFirstByUsernameIgnoreCase(String username);
 
-	public Usuario findFirstByNomUsuarioIgnoreCaseAndContrasenya(String nomUsuario, String contrasenya);
+	public Usuario findFirstByUsernameIgnoreCaseAndPassword(String username, String password);
 
 }

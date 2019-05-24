@@ -33,9 +33,9 @@ public class RegistroController {
 			Model model) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-		usuario.setContrasenya(passwordEncoder.encode(usuario.getContrasenya()));
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 
-		if (usuarioService.findOneByNomUsuario(usuario.getNomUsuario()) != null
+		if (usuarioService.findOneByUsername(usuario.getUsername()) != null
 				|| usuarioService.findOneByCorreo(usuario.getCorreo()) != null) {
 			model.addAttribute("errorRegistro", "El usuario o el correo electrónico ya existe");
 			return "registroForm";
@@ -57,9 +57,9 @@ public class RegistroController {
 			Model model) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-		usuario.setContrasenya(passwordEncoder.encode(usuario.getContrasenya()));
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 
-		if (usuarioService.findOneByNomUsuario(usuario.getNomUsuario()) != null
+		if (usuarioService.findOneByUsername(usuario.getUsername()) != null
 				|| usuarioService.findOneByCorreo(usuario.getCorreo()) != null) {
 			model.addAttribute("errorRegistro", "El usuario o el correo electrónico ya existe");
 			return "admin/anadirUsuarioAdmin";

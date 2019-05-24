@@ -10,8 +10,8 @@ import com.salesianostriana.dam.tiendamovil.repository.UsuarioRepository;
 @Service
 public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository> {
 
-	public Usuario findOneByNomUsuario(String nomUsuario) {
-		return repositorio.findFirstByNomUsuario(nomUsuario);
+	public Usuario findOneByUsername(String username) {
+		return repositorio.findFirstByUsername(username);
 	}
 
 	public Usuario findOneByCorreo(String correo) {
