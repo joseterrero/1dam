@@ -8,6 +8,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="La mejor tienda online con los últimos productos a la venta y con las mejores ofertas del mercado. Aprovecha ya y hazte con ellas." />
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -43,8 +45,7 @@
 			<!-- Dropdown -->
 			<li class="desplegable nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown" sec:authentication="username"> Usuario
-			</a>
+				data-toggle="dropdown" sec:authentication="username"> Usuario </a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="#"
 						th:href="@{/admin/editar/{id}(id=${Usuario.id})}">Editar
@@ -55,8 +56,10 @@
 	</nav>
 
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<form class="form-inline" action="#" th:action="@{search}" th:object="${inputBuscar}" method="POST">
-			<input class="form-control mr-sm-2" type="text" name="nombre" placeholder="Search" th:field="*{search}">
+		<form class="form-inline" action="#" th:action="@{search}"
+			th:object="${inputBuscar}" method="POST">
+			<input class="form-control mr-sm-2" type="text" name="nombre"
+				placeholder="Search" th:field="*{search}">
 			<button class="btn btn-success" type="submit">Buscar</button>
 		</form>
 	</nav>
