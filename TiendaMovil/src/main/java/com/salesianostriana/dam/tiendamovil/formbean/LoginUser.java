@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginUser {
 	
-	private String nomUsuario;
+	private String username;
 	private String contrasenya;
 	
-	public LoginUser(String nomUsuario, String contrasenya) {
+	public LoginUser(String username, String contrasenya) {
 		super();
-		this.nomUsuario = nomUsuario;
+		this.username = username;
 		this.contrasenya = contrasenya;
 	}
 

@@ -28,30 +28,9 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public String mostrarLogin(Model model) {
-//		model.addAttribute("loginUser", new Usuario());
 		return "login";
 
 	}
-//
-//	@PostMapping("/checkLogin")
-//	public String doLogin(@ModelAttribute("loginUser") Usuario usuario, Model model) {
-//		Usuario user = usuarioRepo.findFirstByNomUsuarioAndContrasenya(loginUser.getNomUsuario(),
-//				loginUser.getContrasenya());
-//
-//		if (user != null && user.isAdmin()) {
-//
-//			session.setAttribute("usuarioActual", user);
-//			return "redirect:/admin/listProductos";
-//		} else if (user != null) {
-//			session.setAttribute("usuarioActual", user);
-//			return "redirect:/inicio";
-//
-//		} else {
-//			model.addAttribute("loginError", "El usuario o contraseña no es válido");
-//			return "login";
-//		}
-//
-//	}
 
 	@GetMapping("/logout")
 	public String doLogout(Model model) {

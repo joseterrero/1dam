@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.salesianostriana.dam.tiendamovil.baseservice.BaseService;
 import com.salesianostriana.dam.tiendamovil.modelo.Producto;
 import com.salesianostriana.dam.tiendamovil.repository.ProductoRepository;
-// import com.salesianostriana.dam.tiendamovil.storage.StorageService;
 import com.salesianostriana.dam.tiendamovil.storage.StorageService;
 
 @Service
@@ -41,9 +40,13 @@ public class ProductoService extends BaseService<Producto, Long, ProductoReposit
 		return repositorio.findByModeloContainingIgnoreCase(modelo);
 	}
 
-//	public Page<Producto> findAllPageable(Pageable pageable){
-//		return repositorio.findAll(pageable);
-//	}
+	public Page<Producto> findAllPageable(Pageable pageable) {
+		return repositorio.findAll(pageable);
+	}
+
+	public Page<Producto> findByModeloContainingIgnoreCasePageable(String modelo, Pageable pageable) {
+		return repositorio.findByModeloContainingIgnoreCase(modelo, pageable);
+	}
 
 	/**
 	 * 
