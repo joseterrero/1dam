@@ -8,6 +8,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="La mejor tienda online con los últimos productos a la venta y con las mejores ofertas del mercado. Aprovecha ya y hazte con ellas. Página principal después de loguearse." />
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -48,8 +50,9 @@
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="#"
 						th:href="@{/admin/editar/{id}(id=${Usuario.id})}">Editar
-						perfil</a> <a class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
-						sesión</a>
+						perfil</a> <a class="dropdown-item"
+						href="javascript:document.getElementById('logoutForm').submit()"
+						th:href="@{/logout}">Cerrar sesión</a>
 				</div></li>
 		</ul>
 	</nav>

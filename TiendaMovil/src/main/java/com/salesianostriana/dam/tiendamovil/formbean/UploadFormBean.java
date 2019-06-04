@@ -26,4 +26,16 @@ public class UploadFormBean {
 	private double precio;
 	private long cantidad;
 
+	public UploadFormBean(String modelo, String color, long capacidad, long ram, LocalDate fecha, double precio,
+			long cantidad) {
+		super();
+		this.modelo = modelo;
+		this.color = color;
+		this.capacidad = capacidad;
+		this.ram = ram;
+		this.fecha = fecha;
+		this.precio = precio;
+		this.cantidad = cantidad;
+	}
+
 }
