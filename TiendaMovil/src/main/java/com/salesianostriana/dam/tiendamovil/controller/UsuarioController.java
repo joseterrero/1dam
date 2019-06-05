@@ -32,7 +32,7 @@ public class UsuarioController {
 
 		if (aEditar != null) {
 			model.addAttribute("formRegistro", aEditar);
-			return "admin/addUsuario";
+			return "registroForm";
 		} else {
 			return "redirect:/";
 		}

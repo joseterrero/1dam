@@ -2,33 +2,32 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Editar Usuario</title>
+<title>Formulario de registro</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description"
-	content="La mejor tienda online con los últimos productos a la venta y con las mejores ofertas del mercado. Aprovecha ya y hazte con ellas. Formulario para poder editar un usuario de la lista." />
+	content="La mejor tienda online con los últimos productos a la venta y con las mejores ofertas del mercado. Aprovecha ya y hazte con ellas. Formulario para registrarse y acceder a la página." />
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" th:href="@{../../css/añadirUsuarioAdmin.css}">
+<link rel="stylesheet" type="text/css" th:href="@{../css/registroForm.css}">
 </head>
 
 <body>
 
 	<div class="container">
-		<form class=""
-			th:action="${lista.id != 0} ? @{/admin/editarUsuario/submit} : @{/admin/newUsuarioAdmin}"
-			method="POST" th:object="${lista}">
+		<form class="" th:action="@{/editarUsuario/submit}" method="POST"
+			th:object="${formRegistro}">
 			<fieldset>
 
 				<!-- Form Name -->
 				<legend class="text-center">Editar usuario</legend>
-				<input th:if="${lista.id != 0}" type="hidden" name="id"
+				<input th:if="${formRegistro.id != 0}" type="hidden" name="id"
 					th:field="*{id}" />
 				<div class="columna">
 					<!-- Text input-->
@@ -94,8 +93,8 @@
 
 					<!-- Password input-->
 					<div class="form-group">
-						<label class=" control-label" for="password">Contraseña <span
-							class="text-danger">*</span>
+						<label class=" control-label" for="contrasenya">Contraseña
+							<span class="text-danger">*</span>
 						</label>
 						<div class="">
 							<input id="password" name="password" type="password"
@@ -110,33 +109,18 @@
 							contraseña <span class="text-danger">*</span>
 						</label>
 						<div class="">
-							<input id="repetContrasenya" name="repetContrasenya"
-								type="password" placeholder="Ej: usuario1234"
-								class="form-control input-md" required>
+							<input id="repetPassword" name="repetPassword" type="password"
+								placeholder="Ej: usuario1234" class="form-control input-md"
+								required>
 						</div>
 					</div>
 
-					<!-- boolean isAdmin input-->
+					<!-- Button -->
 					<div class="form-group">
-						<label class=" control-label" for="isAdmin">¿Admin? <span
-							class="text-danger">*</span>
-						</label>
+						<label class=" control-label" for="edit"></label>
 						<div class="">
-							<input id="admin" name="admin" type="radio" class="input-md"
-								th:field="*{admin}" value="true">True <br> <input
-								id="admin" name="admin" type="radio" class="input-md"
-								th:field="*{admin}" value="false">False
+							<button id="edit" name="edit" class="btn btn-primary">Editar</button>
 						</div>
-					</div>
-
-				</div>
-
-				<!-- Button -->
-				<div class="form-group ml-5">
-					<label class=" control-label" for="registro"></label>
-					<div class="ml-5">
-						<button id="register" name="registro" class="btn btn-primary">Modificar
-							Usuario</button>
 					</div>
 				</div>
 
@@ -149,21 +133,21 @@
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script type="text/javascript" th:src="@{/js/registro.js}"
 		src="/js/registro.js"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-	<script
+	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 		th:src="@{/webjars/popper.js/1.14.7/dist/umd/popper.min.js}"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 		crossorigin="anonymous"></script>
-	<script
+	<script type="text/javascript"
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-
 </body>
 
 </html>
