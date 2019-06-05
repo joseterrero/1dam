@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.tiendamovil.controller;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class AdminController {
 
 	// Listar
 	@GetMapping({ "/", "/listUsuarios" })
-	public String listarTodos(Model model) {
+	public String listarUsuarios(Model model) {
 		model.addAttribute("inputBuscar", new SearchBean());
 		model.addAttribute("lista", usuarioService.findAll());
 		return "admin/usuariosAdmin";
@@ -48,6 +49,10 @@ public class AdminController {
 
 	@PostMapping("/editarUsuario/submit")
 	public String editUsuario(@ModelAttribute("lista") Usuario usuario) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+
 		usuarioService.edit(usuario);
 		return "redirect:/admin/listUsuarios";
 	}

@@ -22,15 +22,13 @@
 
 <body>
 
-	<div sec:authorize="hasRole('ROLE_ADMIN')">
-
 		<div class="container">
 			<form class="" th:action="@{/admin/newProductoAdmin}" method="POST"
-				th:object="${formProductoAdmin}">
+				th:object="${formProductoAdmin}" enctype="multipart/form-data">
 				<fieldset>
 
 					<!-- Form Name -->
-					<legend class="text-center">Formulario de registro</legend>
+					<legend class="text-center">Añadir producto</legend>
 					<div class="columna">
 						<!-- Text input-->
 						<div class="form-group">
@@ -117,9 +115,9 @@
 						</div>
 						<!-- Input type file -->
 						<div class="form-group">
-							<label class=" control-label" for="archivo">Subir archivo</label>
+							<label class=" control-label" for="fileUrl">Subir archivo</label>
 							<div class="">
-								<input id="archivo" name="archivo" type="file"
+								<input id="fileUrl" name="fileUrl" type="file"
 									th:field="*{fileUrl}"
 									class="form-control input-md btn btn-primary"> </input>
 							</div>
@@ -154,7 +152,6 @@
 			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous"></script>
 
-	</div>
 </body>
 
 </html>

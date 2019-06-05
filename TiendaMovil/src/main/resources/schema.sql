@@ -15,7 +15,7 @@
     
     create table pedido (id bigint not null, fecha date, usuario_id bigint, primary key (id))
     
-    create table producto ( id bigint not null, cantidad bigint not null, capacidad bigint not null, color varchar(255), fecha date, file_url varchar(255), modelo varchar(255), precio double not null, ram bigint not null, usuario_id bigint, primary key (id))
+    create table producto (id bigint not null, cantidad bigint not null, capacidad bigint not null, color varchar(255), fecha date, file_url varchar(255), modelo varchar(255), precio double not null, ram bigint not null, usuario_id bigint, primary key (id))
     
     create table usuario (id bigint not null, apellidos varchar(255), correo varchar(255), is_admin boolean not null, nombre varchar(255), password varchar(255), username varchar(255), primary key (id))
     

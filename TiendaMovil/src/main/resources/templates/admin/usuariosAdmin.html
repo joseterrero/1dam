@@ -23,90 +23,86 @@
 
 <body>
 
-	<div sec:authorize="hasRole('ROLE_ADMIN')">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<!-- Links -->
+		<ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link"
+				href="productosAdmin.html" th:href="@{/admin/listProductos}">Productos</a></li>
+			<li class="nav-item active"><a class="nav-link"
+				href="usuariosAdmin.html" th:href="@{/admin/listUsuarios}">Usuarios</a></li>
 
-			<!-- Links -->
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link"
-					href="productosAdmin.html" th:href="@{/admin/listProductos}">Productos</a></li>
-				<li class="nav-item active"><a class="nav-link"
-					href="usuariosAdmin.html" th:href="@{/admin/listUsuarios}">Usuarios</a></li>
+			<!-- Dropdown -->
+			<li class="desplegable nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown"> <span> Admin </span></a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
+						sesión</a>
+				</div></li>
+		</ul>
+	</nav>
 
-				<!-- Dropdown -->
-				<li class="desplegable nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbardrop"
-					data-toggle="dropdown"><span sec:authentication="nomUsuario">
-							Admin </span></a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
-							sesión</a>
-					</div></li>
-			</ul>
-		</nav>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<form class="form-inline" action="#" method="POST"
+			th:action="@{/admin/buscarUsuario}" th:object="${inputBuscar}">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search"
+				th:field="*{search}" th:value="*{search}">
+			<button class="btn btn-success" type="submit">Search</button>
+		</form>
+	</nav>
 
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-			<form class="form-inline" action="#" method="POST"
-				th:action="@{/admin/buscarUsuario}" th:object="${inputBuscar}">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search"
-					th:field="*{search}" th:value="*{search}">
-				<button class="btn btn-success" type="submit">Search</button>
-			</form>
-		</nav>
+	<button type="button" class="btn btn-outline-primary mt-5 mb-3">
+		<a href="anadirUsuarioAdmin.html" th:href="@{/admin/addUsuario}">Añadir
+			Usuario</a>
+	</button>
 
-		<button type="button" class="btn btn-outline-primary mt-5 mb-3">
-			<a href="anadirUsuarioAdmin.html" th:href="@{/admin/addUsuario}">Añadir
-				Usuario</a>
-		</button>
+	<table class="table table-striped w-75">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Apellidos</th>
+				<th scope="col">Nombre usuario</th>
+				<th scope="col">Email</th>
+				<th scope="col">Contraseña</th>
+				<th scope="col">isAdmin</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="usuario : ${lista}">
+				<th th:text="${usuario.id}" scope="row">1</th>
+				<td th:text="${usuario.nombre}">nombre</td>
+				<td th:text="${usuario.apellidos}">apellidos</td>
+				<td th:text="${usuario.username}">nomUsu</td>
+				<td th:text="${usuario.correo}">email</td>
+				<td th:text="${usuario.password}">contraseña</td>
+				<td th:text="${usuario.admin}">isAdmin</td>
+				<td><a href="#"
+					th:href="@{/admin/editar/{id}(id=${usuario.id})}">Editar</a> | <a
+					href="#" th:href="@{/admin/borrar/{id}(id=${usuario.id})}">Borrar</a></td>
+			</tr>
+		</tbody>
+	</table>
 
-		<table class="table table-striped w-75">
-			<thead>
-				<tr>
-					<th scope="col">ID</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Apellidos</th>
-					<th scope="col">Nombre usuario</th>
-					<th scope="col">Email</th>
-					<th scope="col">Contraseña</th>
-					<th scope="col">isAdmin</th>
-					<th scope="col"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="usuario : ${lista}">
-					<th th:text="${usuario.id}" scope="row">1</th>
-					<td th:text="${usuario.nombre}">nombre</td>
-					<td th:text="${usuario.apellidos}">apellidos</td>
-					<td th:text="${usuario.username}">nomUsu</td>
-					<td th:text="${usuario.correo}">email</td>
-					<td th:text="${usuario.password}">contraseña</td>
-					<td th:text="${usuario.admin}">isAdmin</td>
-					<td><a href="#"
-						th:href="@{/admin/editar/{id}(id=${usuario.id})}">Editar</a> | <a
-						href="#" th:href="@{/admin/borrar/{id}(id=${usuario.id})}">Borrar</a></td>
-				</tr>
-			</tbody>
-		</table>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		th:src="@{/webjars/popper.js/1.14.7/dist/umd/popper.min.js}"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-			th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"
-			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-			th:src="@{/webjars/popper.js/1.14.7/dist/umd/popper.min.js}"
-			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-			th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"
-			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-			crossorigin="anonymous"></script>
-
-	</div>
 </body>
 
 </html>

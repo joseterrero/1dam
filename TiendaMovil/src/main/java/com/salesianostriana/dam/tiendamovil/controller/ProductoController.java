@@ -45,9 +45,8 @@ public class ProductoController {
 	}
 
 	@PostMapping("/admin/newProductoAdmin")
-	public String nuevoProductoAdmin(@ModelAttribute("formProductoAdmin") UploadFormBean uploadBean, Producto producto,
-			MultipartFile file, Model model) {
-//		productRepo.save(producto);
+	public String nuevoProductoAdmin(@ModelAttribute("formProductoAdmin") UploadFormBean uploadBean,
+			@RequestParam("file") MultipartFile file, Model model) {
 		/*
 		 * Creamos un objeto PojoConFichero, pero debemos tener en cuenta, que en este
 		 * caso no es como en anteriores donde era el objeto modal completo recogido en
@@ -75,7 +74,7 @@ public class ProductoController {
 
 	// Listar
 	@GetMapping("/admin/listProductos")
-	public String listarTodos(Model model) {
+	public String listarProductos(Model model) {
 		model.addAttribute("inputBuscar", new SearchBean());
 		model.addAttribute("listaProd", productService.findAll());
 		return "admin/productosAdmin";
@@ -131,7 +130,7 @@ public class ProductoController {
 		// del parámetro decrementado en 1.
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
-		String evalModelo= modelo.orElse(null);
+		String evalModelo = modelo.orElse(null);
 
 		Page<Producto> productos = null;
 

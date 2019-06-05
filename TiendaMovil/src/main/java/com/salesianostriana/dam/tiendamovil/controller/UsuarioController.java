@@ -57,7 +57,7 @@ public class UsuarioController {
 	}
 
 	// vista estatica inicio
-	@GetMapping("/inicio")
+	@GetMapping("/")
 	public String mostrarInicio() {
 		return "inicio";
 	}
