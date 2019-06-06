@@ -75,6 +75,7 @@ public class ProductoController {
 	// Listar
 	@GetMapping("/admin/listProductos")
 	public String listarProductos(Model model) {
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		model.addAttribute("inputBuscar", new SearchBean());
 		model.addAttribute("listaProd", productService.findAll());
 		return "admin/productosAdmin";
@@ -134,24 +135,25 @@ public class ProductoController {
 
 		Page<Producto> productos = null;
 
-		if (evalModelo == null) {
-			productos = productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
-		} else {
-			productos = productService.findByModeloContainingIgnoreCasePageable(evalModelo,
-					PageRequest.of(evalPage, evalPageSize));
-		}
+//		if (evalModelo == null) {
+//			productos = productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+//		} else {
+//			productos = productService.findByModeloContainingIgnoreCasePageable(evalModelo,
+//					PageRequest.of(evalPage, evalPageSize));
+//		}
 		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
 		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
 		// botones
 		// debe mostrar y cuál es el número de objetos a dibujar.
-		Pager pager = new Pager(productos.getTotalPages(), productos.getNumber(), BUTTONS_TO_SHOW);
+//		Pager pager = new Pager(productos.getTotalPages(), productos.getNumber(), BUTTONS_TO_SHOW);
 
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		model.addAttribute("productos", productos);
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
-		model.addAttribute("pager", pager);
+//		model.addAttribute("pager", pager);
 
-		model.addAttribute("productos", productService.findAllProducts());
+		model.addAttribute("listaProd", productService.findAllProducts());
 
 		/*
 		 * La siguiente línea viene del último método, que se dedica a buscar, para que
@@ -159,13 +161,14 @@ public class ProductoController {
 		 * añadimos al model el objeto tipo bean de búsqueda cuando se está buscando
 		 * algún producto
 		 */
-		model.addAttribute("searchForm", new SearchBean());
+		model.addAttribute("inputBuscar", new SearchBean());
 		return "productos";
 	}
 
 	/* Método para buscar productos */
 	@PostMapping("/search")
 	public String searchProducto(@ModelAttribute("inputBuscar") SearchBean searchBean, Model model) {
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		model.addAttribute("listaProd", productService.findByModelo(searchBean.getSearch()));
 		return "productos";
 	}

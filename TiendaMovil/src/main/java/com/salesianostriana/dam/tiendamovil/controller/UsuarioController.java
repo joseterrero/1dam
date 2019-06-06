@@ -3,6 +3,9 @@ package com.salesianostriana.dam.tiendamovil.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +35,7 @@ public class UsuarioController {
 
 		if (aEditar != null) {
 			model.addAttribute("formRegistro", aEditar);
-			return "registroForm";
+			return "editUsuario";
 		} else {
 			return "redirect:/";
 		}
@@ -40,25 +43,36 @@ public class UsuarioController {
 
 	@PostMapping("/editarUsuario/submit")
 	public String editUsuario(@ModelAttribute("formRegistro") Usuario usuario) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+
 		usuarioService.edit(usuario);
 		return "redirect:/";
 	}
 
 	// vista estatica galeria
 	@GetMapping("/galeria")
-	public String mostrarGaleria() {
+	public String mostrarGaleria(Model model) {
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		return "galeria";
 	}
 
 	// vista estatica informacion
 	@GetMapping("/info")
-	public String mostrarInfo() {
+	public String mostrarInfo(Model model) {
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		return "informacion";
 	}
 
 	// vista estatica inicio
 	@GetMapping("/")
-	public String mostrarInicio() {
+	public String mostrarInicio(Model model) {
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario u = (Usuario) usuarioService.findOneByUsername(user.getUsername());
+		session.setAttribute("usuarioActual", u);
+
+		model.addAttribute("usuario", u);
 		return "inicio";
 	}
 

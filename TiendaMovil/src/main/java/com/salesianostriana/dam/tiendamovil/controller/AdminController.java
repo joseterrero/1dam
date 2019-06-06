@@ -1,5 +1,10 @@
 package com.salesianostriana.dam.tiendamovil.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +23,9 @@ import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 public class AdminController {
 
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private HttpSession session;
 
 	public AdminController(UsuarioService usuarioService) {
 		super();
@@ -27,6 +35,12 @@ public class AdminController {
 	// Listar
 	@GetMapping({ "/", "/listUsuarios" })
 	public String listarUsuarios(Model model) {
+		
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario u = (Usuario) usuarioService.findOneByUsername(user.getUsername());
+		session.setAttribute("usuarioActual", u);
+		model.addAttribute("usuario", u);
+		
 		model.addAttribute("inputBuscar", new SearchBean());
 		model.addAttribute("lista", usuarioService.findAll());
 		return "admin/usuariosAdmin";
@@ -67,7 +81,7 @@ public class AdminController {
 	// Buscar
 	@PostMapping("/buscarUsuario")
 	public String buscarUsuario(@ModelAttribute("inputBuscar") SearchBean s, Model model) {
-		model.addAttribute("lista", usuarioService.findOneByUsername(s.getSearch()));
+		model.addAttribute("lista", usuarioService.findByNombre(s.getSearch()));
 		return "admin/usuariosAdmin";
 	}
 

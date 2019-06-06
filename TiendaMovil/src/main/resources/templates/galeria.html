@@ -38,19 +38,22 @@
 
 			<!-- Carrito -->
 			<li class="carrito nav-item"><a class="nav-link" href="#"
-				th:href="@{/carrito}"> <img src="../img/carrito.png"
-					th:src="@{/img/carrito.png}" alt="carrito">
+				th:href="@{/carrito}"> <img th:src="@{../img/carrito.png}"
+					alt="carrito compra">
 			</a></li>
 
 			<!-- Dropdown -->
 			<li class="desplegable nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown" sec:authentication="username"> Usuario </a>
+				data-toggle="dropdown"> <span th:text="${usuario.username}"></span> </a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#"
-						th:href="@{/admin/editar/{id}(id=${Usuario.id})}">Editar
-						perfil</a> <a class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
+ 					<a class="dropdown-item" href="#"
+						th:href="@{/editar/{id}(id=${usuario.id})}">Editar
+						perfil</a>
+					<a class="dropdown-item" th:href="@{/logout}" 
+						href="javascript:document.getElementById('logoutForm').submit()">Cerrar
 						sesión</a>
+
 				</div></li>
 		</ul>
 	</nav>
@@ -64,7 +67,7 @@
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<img class="rounded mx-auto d-block mt-3" src="../img/movil1.png"
-								th:src="@{/img/movil1.png}" alt="iPhone XS Max">
+								th:src="@{../img/movil1.png}" alt="iPhone XS Max">
 							<h2 class="text-center font-weight-bold">iPhone XS Max</h2>
 							<div class="text-center">
 								<a href="productos.html" th:href="@{/productos}"><button
@@ -74,7 +77,7 @@
 						</div>
 						<div class="carousel-item">
 							<img class="rounded mx-auto d-block mt-3" src="../img/movil2.jpg"
-								th:src="@{/img/movil2.jpg}" alt="Samsung Galaxy s10+">
+								th:src="@{../img/movil2.jpg}" alt="Samsung Galaxy s10+">
 							<h2 class="text-center font-weight-bold">Samsung Galaxy s10+</h2>
 							<div class="text-center">
 								<a href="productos.html" th:href="@{/productos}"><button
@@ -84,7 +87,7 @@
 						</div>
 						<div class="carousel-item">
 							<img class="rounded mx-auto d-block mt-3" src="../img/movil3.jpg"
-								th:src="@{/img/movil3.jpg}" alt="Huawei P30 pro">
+								th:src="@{../img/movil3.jpg}" alt="Huawei P30 pro">
 							<h2 class="text-center font-weight-bold">Huawei P30 pro</h2>
 							<div class="text-center">
 								<a href="productos.html" th:href="@{/productos}"><button
@@ -94,7 +97,7 @@
 						</div>
 						<div class="carousel-item">
 							<img class="rounded mx-auto d-block mt-3" src="../img/movil4.jpg"
-								th:src="@{/img/movil4.jpg}" alt="Honor View 20">
+								th:src="@{../img/movil4.jpg}" alt="Honor View 20">
 							<h2 class="text-center font-weight-bold">Honor View 20</h2>
 							<div class="text-center">
 								<a href="productos.html" th:href="@{/productos}"><button
@@ -104,7 +107,7 @@
 						</div>
 						<div class="carousel-item">
 							<img class="rounded mx-auto d-block mt-3"
-								src="../img/movil5.jpeg" th:src="@{/img/movil5.jpeg}"
+								src="../img/movil5.jpeg" th:src="@{../img/movil5.jpeg}"
 								alt="Xiaomi mi 9">
 							<h2 class="text-center font-weight-bold">Xiaomi mi 9</h2>
 							<div class="text-center">
@@ -115,7 +118,7 @@
 						</div>
 						<div class="carousel-item">
 							<img class="rounded mx-auto d-block mt-3" src="../img/movil6.jpg"
-								th:src="@{/img/movil6.jpg}" alt="LG V40 ThinkQ">
+								th:src="@{../img/movil6.jpg}" alt="LG V40 ThinkQ">
 							<h2 class="text-center font-weight-bold">LG V40 ThinkQ</h2>
 							<div class="text-center">
 								<a href="productos.html" th:href="@{/productos}"><button
@@ -142,18 +145,16 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"
+	<script 
+		th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		th:src="@{/webjars/popper.js/1.14.7/dist/umd/popper.min.js}"
+		th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js}"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 		crossorigin="anonymous"></script>
 	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"
+		th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
 </body>

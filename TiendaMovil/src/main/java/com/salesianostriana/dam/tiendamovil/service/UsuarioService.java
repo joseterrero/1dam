@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.tiendamovil.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.tiendamovil.baseservice.BaseService;
@@ -11,6 +13,10 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
 
 	public Usuario findOneByUsername(String username) {
 		return repositorio.findFirstByUsername(username);
+	}
+	
+	public List<Usuario> findByNombre(String nombre) {
+		return repositorio.findByNombreContainingIgnoreCase(nombre);
 	}
 
 	public Usuario findOneByCorreo(String correo) {

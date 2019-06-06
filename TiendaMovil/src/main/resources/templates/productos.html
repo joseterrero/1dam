@@ -36,28 +36,29 @@
 
 			<!-- Carrito -->
 			<li class="carrito nav-item"><a class="nav-link" href="#"
-				th:href="@{/carrito}"> <img src="../img/carrito.png"
-					th:src="@{/img/carrito.png}" alt="carrito">
+				th:href="@{/carrito}"> <img th:src="@{../img/carrito.png}"
+					alt="carrito compra">
 			</a></li>
 
 			<!-- Dropdown -->
 			<li class="desplegable nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown" sec:authentication="username"> Usuario </a>
+				data-toggle="dropdown"> <span th:text="${usuario.username}"></span>
+			</a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="#"
-						th:href="@{/admin/editar/{id}(id=${Usuario.id})}">Editar
-						perfil</a> <a class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
+						th:href="@{/editar/{id}(id=${usuario.id})}">Editar perfil</a> <a
+						class="dropdown-item" th:href="@{/logout}"
+						href="javascript:document.getElementById('logoutForm').submit()">Cerrar
 						sesión</a>
 				</div></li>
 		</ul>
 	</nav>
-
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<nav class="navbar navbar-expand-sm navbar-dark">
 		<form class="form-inline" action="#" th:action="@{search}"
 			th:object="${inputBuscar}" method="POST">
 			<input class="form-control mr-sm-2" type="text" name="nombre"
-				placeholder="Search" th:field="*{search}">
+				placeholder="Buscar por nombre" th:field="*{search}">
 			<button class="btn btn-success" type="submit">Buscar</button>
 		</form>
 	</nav>
@@ -66,20 +67,25 @@
 		th:each="producto: ${listaProd}">
 		<div class="card m-4" style="width: 18rem;">
 			<img class="card-img-top" src="../img/movil1.png"
-				th:src="${producto.fileUrl}" alt="Card image cap">
+				th:src="${producto.fileUrl}" alt="Imagen del producto">
 			<div class="card-body">
 				<!-- TITULO PRODUCTO -->
 				<h5 class="card-title" th:text="${producto.modelo}">Card title</h5>
 				<!-- TEXTO -->
 				<ul>
-					<li class="card-text" th:text="${producto.color}"></li>
-					<li class="card-text" th:text="${producto.capacidad}"></li>
-					<li class="card-text" th:text="${producto.ram}"></li>
-					<li class="card-text" th:text="${producto.fecha}"></li>
+					<li class="card-text"><span>Color: </span><span
+						th:text="${producto.color}"></span></li>
+					<li class="card-text"><span>Capacidad: </span><span
+						th:text="${producto.capacidad}"></span></li>
+					<li class="card-text"><span>RAM: </span><span
+						th:text="${producto.ram}"></span></li>
+					<li class="card-text"><span>Fecha de lanzamiento: </span><span
+						th:text="${producto.fecha}"></span></li>
 				</ul>
-				<p class="card-text text-center"
-					th:text="${#numbers.formatDecimal(producto.precio, 1, 2,'COMMA')} + ' €'">Texto
-					de ejemplo</p>
+				<p class="card-text text-center">
+					<span>Precio: </span> <span
+						th:text="${#numbers.formatDecimal(producto.precio, 1, 2,'COMMA')} + ' €'"></span>
+				</p>
 				<!-- LINK CARRITO COMPRA -->
 				<a href="#" th:href="@{/carrito}" class="btn btn-primary">Añadir
 					a carrito</a>
@@ -87,67 +93,64 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="form-group col-md-1">
-			<select class="form-control pagination" id="pageSizeSelect">
-				<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-					th:value="${pageSize}"
-					th:selected="${pageSize} == ${selectedPageSize}"></option>
-			</select>
-		</div>
-		<div th:if="${persons.totalPages != 1}"
-			class="form-group col-md-11 pagination-centered">
-			<ul class="pagination">
-				<!-- Si el número de página es cero, deshabilitamos el enlace -->
-				<li th:class="${productos.number == 0} ? disabled">
-					<!-- Este enlace nos debe llevar a la primera página, con el tamaño de página actual -->
-					<a class="pageLink"
-					th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
-				</li>
-				<!-- Si el número de página es cero, deshabilitamos el enlace -->
-				<li th:class="${productos.number == 0} ? disabled">
-					<!-- Este enlace nos debe llevar a la página anterior, con el tamaño de página actual -->
-					<a class="pageLink"
-					th:href="@{/(pageSize=${selectedPageSize}, page=${productos.number})}">&larr;</a>
-				</li>
-				<!-- Este bucle genera los enlaces para las demás páginas -->
-				<li
-					th:class="${productos.number == (page - 1)} ? 'active pointer-disabled'"
-					th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-					<a class="pageLink"
-					th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
-					th:text="${page}"></a>
-				</li>
-				<!-- Enlace a la siguiente página; si estamos en la última queda desabilitado  -->
-				<li
-					th:class="${productos.number + 1 == productos.totalPages} ? disabled">
-					<a class="pageLink"
-					th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number + 2})}">&rarr;</a>
-				</li>
-				<!-- Enlace a la última página; si estamos en la última queda desabilitado  -->
-				<li
-					th:class="${productos.number + 1 == productos.totalPages} ? disabled">
-					<a class="pageLink"
-					th:href="@{/(pageSize=${selectedPageSize}, page=${productos.totalPages})}">&raquo;</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+	<!-- 	<div class="row"> -->
+	<!-- 		<div class="form-group col-md-1"> -->
+	<!-- 			<select class="form-control pagination" id="pageSizeSelect"> -->
+	<!-- 				<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" -->
+	<!-- 					th:value="${pageSize}" -->
+	<!-- 					th:selected="${pageSize} == ${selectedPageSize}"></option> -->
+	<!-- 			</select> -->
+	<!-- 		</div> -->
+	<!-- 		<div th:if="${persons.totalPages != 1}" -->
+	<!-- 			class="form-group col-md-11 pagination-centered"> -->
+	<!-- 			<ul class="pagination"> -->
+	<!-- 				Si el número de página es cero, deshabilitamos el enlace -->
+	<!-- 				<li th:class="${productos.number == 0} ? disabled"> -->
+	<!-- 					Este enlace nos debe llevar a la primera página, con el tamaño de página actual -->
+	<!-- 					<a class="pageLink" -->
+	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a> -->
+	<!-- 				</li> -->
+	<!-- 				Si el número de página es cero, deshabilitamos el enlace -->
+	<!-- 				<li th:class="${productos.number == 0} ? disabled"> -->
+	<!-- 					Este enlace nos debe llevar a la página anterior, con el tamaño de página actual -->
+	<!-- 					<a class="pageLink" -->
+	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=${productos.number})}">&larr;</a> -->
+	<!-- 				</li> -->
+	<!-- 				Este bucle genera los enlaces para las demás páginas -->
+	<!-- 				<li -->
+	<!-- 					th:class="${productos.number == (page - 1)} ? 'active pointer-disabled'" -->
+	<!-- 					th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}"> -->
+	<!-- 					<a class="pageLink" -->
+	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=${page})}" -->
+	<!-- 					th:text="${page}"></a> -->
+	<!-- 				</li> -->
+	<!-- 				Enlace a la siguiente página; si estamos en la última queda desabilitado  -->
+	<!-- 				<li -->
+	<!-- 					th:class="${productos.number + 1 == productos.totalPages} ? disabled"> -->
+	<!-- 					<a class="pageLink" -->
+	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number + 2})}">&rarr;</a> -->
+	<!-- 				</li> -->
+	<!-- 				Enlace a la última página; si estamos en la última queda desabilitado  -->
+	<!-- 				<li -->
+	<!-- 					th:class="${productos.number + 1 == productos.totalPages} ? disabled"> -->
+	<!-- 					<a class="pageLink" -->
+	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=${productos.totalPages})}">&raquo;</a> -->
+	<!-- 				</li> -->
+	<!-- 			</ul> -->
+	<!-- 		</div> -->
+	<!-- 	</div> -->
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"
+	<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		th:src="@{/webjars/popper.js/1.14.7/dist/umd/popper.min.js}"
+		th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js}"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 		crossorigin="anonymous"></script>
 	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"
+		th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
 </body>
