@@ -93,6 +93,18 @@
 		</div>
 	</div>
 
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<li th:if="${productPage.totalPages > 0}" class="page-item"
+				th:each="pageNumber : ${pageNumbers}">
+				
+					<a th:href="@{/list(size=${productPage.size}, page=${pageNumber})}"
+						th:text=${pageNumber}
+						th:attr="class=|page-link ${pageNumber==productPage.number + 1} ? active|"></a>
+				</li>
+		</ul>
+	</nav>
+
 	<!-- 	<div class="row"> -->
 	<!-- 		<div class="form-group col-md-1"> -->
 	<!-- 			<select class="form-control pagination" id="pageSizeSelect"> -->
