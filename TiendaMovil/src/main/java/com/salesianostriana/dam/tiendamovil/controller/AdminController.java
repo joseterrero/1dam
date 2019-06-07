@@ -81,6 +81,7 @@ public class AdminController {
 	// Buscar
 	@PostMapping("/buscarUsuario")
 	public String buscarUsuario(@ModelAttribute("inputBuscar") SearchBean s, Model model) {
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		model.addAttribute("lista", usuarioService.findByNombre(s.getSearch()));
 		return "admin/usuariosAdmin";
 	}

@@ -37,19 +37,19 @@
 
 			<!-- Carrito -->
 			<li class="carrito nav-item"><a class="nav-link" href="#"
-				th:href="@{/carrito}"> <img th:src="@{../img/carrito.png}"
+				th:href="@{/carrito}"> <img th:src="@{/img/carrito.png}"
 					alt="carrito compra">
 			</a></li>
 
 			<!-- Dropdown -->
 			<li class="desplegable nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown"> <span th:text="${usuario.username}"></span> </a>
+				data-toggle="dropdown"> <span th:text="${usuario.username}"></span>
+			</a>
 				<div class="dropdown-menu">
-				<a class="dropdown-item" href="#"
-						th:href="@{/editar/{id}(id=${usuario.id})}">Editar
-						perfil</a> 
-					<a class="dropdown-item" th:href="@{/logout}" 
+					<a class="dropdown-item" href="#"
+						th:href="@{/editar/{id}(id=${usuario.id})}">Editar perfil</a> <a
+						class="dropdown-item" th:href="@{/logout}"
 						href="javascript:document.getElementById('logoutForm').submit()">Cerrar
 						sesión</a>
 				</div></li>
@@ -125,7 +125,8 @@
 								<strong>Dirección del centro:</strong> c/ Condes de Bustillo 17
 							</p>
 							<p>
-								<strong>Teléfono de contacto del centro:</strong> +34 954 33 14 88
+								<strong>Teléfono de contacto del centro:</strong> +34 954 33 14
+								88
 							</p>
 						</div>
 					</div>
@@ -142,6 +143,10 @@
 						aria-labelledby="headingThree" data-parent="#accordion">
 						<div class="card-body"></div>
 						<!-- TEXTO -->
+						<p class="ml-4">Esta aplicación consiste en la gestión de una
+							tienda online de telefonía móvil.</p>
+						<p class="ml-4">En nuestra página vamos a llevar a cabo
+							principalmente la compra-venta de teléfonos móviles.</p>
 					</div>
 				</div>
 			</div>
@@ -150,8 +155,7 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script 
-		th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"
+	<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script

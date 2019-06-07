@@ -36,7 +36,7 @@
 
 			<!-- Carrito -->
 			<li class="carrito nav-item"><a class="nav-link" href="#"
-				th:href="@{/carrito}"> <img th:src="@{../img/carrito.png}"
+				th:href="@{/carrito}"> <img th:src="@{/img/carrito.png}"
 					alt="carrito compra">
 			</a></li>
 
@@ -55,7 +55,7 @@
 		</ul>
 	</nav>
 	<nav class="navbar navbar-expand-sm navbar-dark">
-		<form class="form-inline" action="#" th:action="@{search}"
+		<form class="form-inline" action="#" th:action="@{/search}"
 			th:object="${inputBuscar}" method="POST">
 			<input class="form-control mr-sm-2" type="text" name="nombre"
 				placeholder="Buscar por nombre" th:field="*{search}">
@@ -63,82 +63,89 @@
 		</form>
 	</nav>
 
-	<div class="col-lg-3 col-md-6 mb-lg-0 mb-4 mt-4"
-		th:each="producto: ${listaProd}">
-		<div class="card m-4" style="width: 18rem;">
-			<img class="card-img-top" src="../img/movil1.png"
-				th:src="${producto.fileUrl}" alt="Imagen del producto">
-			<div class="card-body">
-				<!-- TITULO PRODUCTO -->
-				<h5 class="card-title" th:text="${producto.modelo}">Card title</h5>
-				<!-- TEXTO -->
-				<ul>
-					<li class="card-text"><span>Color: </span><span
-						th:text="${producto.color}"></span></li>
-					<li class="card-text"><span>Capacidad: </span><span
-						th:text="${producto.capacidad}"></span></li>
-					<li class="card-text"><span>RAM: </span><span
-						th:text="${producto.ram}"></span></li>
-					<li class="card-text"><span>Fecha de lanzamiento: </span><span
-						th:text="${producto.fecha}"></span></li>
-				</ul>
-				<p class="card-text text-center">
-					<span>Precio: </span> <span
-						th:text="${#numbers.formatDecimal(producto.precio, 1, 2,'COMMA')} + ' €'"></span>
-				</p>
-				<!-- LINK CARRITO COMPRA -->
-				<a href="#" th:href="@{/carrito}" class="btn btn-primary">Añadir
-					a carrito</a>
+	<div class="row">
+		<div class="col-lg-3 col-md-6 mb-lg-0 mb-4 mt-4"
+			th:each="producto: ${listaProd}">
+			<div class="card m-4" style="width: 18rem;">
+				<img class="card-img-top" th:src="@{/images/}+${producto.fileUrl}"
+					alt="Imagen del producto">
+				<div class="card-body">
+					<!-- TITULO PRODUCTO -->
+					<h5 class="card-title" th:text="${producto.modelo}">Card title</h5>
+					<!-- TEXTO -->
+					<ul>
+						<li class="card-text"><span>Color: </span><span
+							th:text="${producto.color}"></span></li>
+						<li class="card-text"><span>Capacidad: </span><span
+							th:text="${producto.capacidad}"></span></li>
+						<li class="card-text"><span>RAM: </span><span
+							th:text="${producto.ram}"></span></li>
+						<li class="card-text"><span>Fecha de lanzamiento: </span><span
+							th:text="${producto.fecha}"></span></li>
+					</ul>
+					<p class="card-text text-center">
+						<span>Precio: </span> <span
+							th:text="${#numbers.formatDecimal(producto.precio, 1, 2,'COMMA')} + ' €'"></span>
+					</p>
+					<!-- LINK CARRITO COMPRA -->
+					<a href="#" th:href="@{/carrito}" class="btn btn-primary">Añadir
+						a carrito</a>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- 	<div class="row"> -->
-	<!-- 		<div class="form-group col-md-1"> -->
-	<!-- 			<select class="form-control pagination" id="pageSizeSelect"> -->
-	<!-- 				<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}" -->
-	<!-- 					th:value="${pageSize}" -->
-	<!-- 					th:selected="${pageSize} == ${selectedPageSize}"></option> -->
-	<!-- 			</select> -->
-	<!-- 		</div> -->
-	<!-- 		<div th:if="${persons.totalPages != 1}" -->
-	<!-- 			class="form-group col-md-11 pagination-centered"> -->
-	<!-- 			<ul class="pagination"> -->
-	<!-- 				Si el número de página es cero, deshabilitamos el enlace -->
-	<!-- 				<li th:class="${productos.number == 0} ? disabled"> -->
-	<!-- 					Este enlace nos debe llevar a la primera página, con el tamaño de página actual -->
-	<!-- 					<a class="pageLink" -->
-	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a> -->
-	<!-- 				</li> -->
-	<!-- 				Si el número de página es cero, deshabilitamos el enlace -->
-	<!-- 				<li th:class="${productos.number == 0} ? disabled"> -->
-	<!-- 					Este enlace nos debe llevar a la página anterior, con el tamaño de página actual -->
-	<!-- 					<a class="pageLink" -->
-	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=${productos.number})}">&larr;</a> -->
-	<!-- 				</li> -->
-	<!-- 				Este bucle genera los enlaces para las demás páginas -->
-	<!-- 				<li -->
-	<!-- 					th:class="${productos.number == (page - 1)} ? 'active pointer-disabled'" -->
-	<!-- 					th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}"> -->
-	<!-- 					<a class="pageLink" -->
-	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=${page})}" -->
-	<!-- 					th:text="${page}"></a> -->
-	<!-- 				</li> -->
-	<!-- 				Enlace a la siguiente página; si estamos en la última queda desabilitado  -->
-	<!-- 				<li -->
-	<!-- 					th:class="${productos.number + 1 == productos.totalPages} ? disabled"> -->
-	<!-- 					<a class="pageLink" -->
-	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=${persons.number + 2})}">&rarr;</a> -->
-	<!-- 				</li> -->
-	<!-- 				Enlace a la última página; si estamos en la última queda desabilitado  -->
-	<!-- 				<li -->
-	<!-- 					th:class="${productos.number + 1 == productos.totalPages} ? disabled"> -->
-	<!-- 					<a class="pageLink" -->
-	<!-- 					th:href="@{/(pageSize=${selectedPageSize}, page=${productos.totalPages})}">&raquo;</a> -->
-	<!-- 				</li> -->
-	<!-- 			</ul> -->
-	<!-- 		</div> -->
-	<!-- 	</div> -->
+	<div class="row">
+		<div class="form-group col-md-1 mx-auto">
+			<select class="form-control pagination" id="pageSizeSelect">
+				<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+					th:value="${pageSize}"
+					th:selected="${pageSize} == ${selectedPageSize}"></option>
+			</select>
+		</div>
+
+		<div class="col-3"></div>
+		<div class="col-4" style="text-align: center;">
+			<nav aria-label="Page navigation example mx-auto">
+				<ul th:if="${productos.totalPages != 1}"
+					class="pagination pagination-circle pg-blue">
+					<li th:class="${productos.number == 0} ? disabled"
+						class="page-item disabled"><a
+						th:href="@{/list/(pageSize=${selectedPageSize}, page=1)}"
+						class="page-link">First</a></li>
+
+					<li th:class="${productos.number == 0} ? disabled"
+						class="page-item disabled"></li>
+					<a
+						th:href="@{/list/(pageSize=${selectedPageSize}, page=${productos.number})}"
+						class="page-link" aria-label="Previous"> <span
+						aria-hidden="true">&larr;</span>
+					</a>
+
+					<li
+						th:class="${productos.number == (page - 1)} ? 'active pointer-disabled'"
+						class="page-item active"
+						th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+						<a th:href="@{/list/(pageSize=${selectedPageSize}, page=${page})}"
+						class="page-link" th:text="${page}">1</a>
+					</li>
+
+					<li
+						th:class="${productos.number + 1 == productos.totalPages} ? disabled"
+						class="page-item"><a
+						th:href="@{/list/(pageSize=${selectedPageSize}, page=${productos.number + 2})}"
+						class="page-link">&rarr;</a></li>
+
+					<li
+						th:class="${productos.number + 1 == productos.totalPages} ? disabled"
+						class="page-item"><a
+						th:href="@{/list/(pageSize=${selectedPageSize}, page=${productos.totalPages})}"
+						class="page-link">Last</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-4"></div>
+	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -153,6 +160,9 @@
 		th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+
+	<script type="text/javascript" th:src="@{/js/paginacion.js}"
+		src="/js/paginacion.js"></script>
 </body>
 
 </html>

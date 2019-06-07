@@ -38,6 +38,7 @@ public class ProductoController {
 	private static final int INITIAL_PAGE_SIZE = 5;
 	private static final int[] PAGE_SIZES = { 5, 10, 20, 50 };
 
+	// Añadir
 	@GetMapping("/admin/addProducto")
 	public String mostrarFormRegistroProductoAdmin(Model model) {
 		model.addAttribute("formProductoAdmin", new Producto());
@@ -112,6 +113,7 @@ public class ProductoController {
 	// Buscar
 	@PostMapping("/admin/buscarProducto")
 	public String buscarProducto(@ModelAttribute("inputBuscar") SearchBean s, Model model) {
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		model.addAttribute("listaProd", productService.findByModelo(s.getSearch()));
 		return "admin/productosAdmin";
 	}
@@ -135,23 +137,23 @@ public class ProductoController {
 
 		Page<Producto> productos = null;
 
-//		if (evalModelo == null) {
-//			productos = productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
-//		} else {
-//			productos = productService.findByModeloContainingIgnoreCasePageable(evalModelo,
-//					PageRequest.of(evalPage, evalPageSize));
-//		}
+		if (evalModelo == null) {
+			productos = productService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
+		} else {
+			productos = productService.findByModeloContainingIgnoreCasePageable(evalModelo,
+					PageRequest.of(evalPage, evalPageSize));
+		}
 		// Creamos el objeto Pager (paginador) indicando los valores correspondientes.
 		// Este sirve para que la plantilla sepa cuantas páginas hay en total, cuantos
 		// botones
 		// debe mostrar y cuál es el número de objetos a dibujar.
-//		Pager pager = new Pager(productos.getTotalPages(), productos.getNumber(), BUTTONS_TO_SHOW);
+		Pager pager = new Pager(productos.getTotalPages(), productos.getNumber(), BUTTONS_TO_SHOW);
 
 		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		model.addAttribute("productos", productos);
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
-//		model.addAttribute("pager", pager);
+		model.addAttribute("pager", pager);
 
 		model.addAttribute("listaProd", productService.findAllProducts());
 

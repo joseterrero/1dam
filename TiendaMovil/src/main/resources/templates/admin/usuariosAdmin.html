@@ -33,7 +33,8 @@
 			<!-- Dropdown -->
 			<li class="desplegable nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown"> <span th:text="${usuario.username}"></span> </a>
+				data-toggle="dropdown"> <span th:text="${usuario.username}"></span>
+			</a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="#" th:href="@{/logout}">Cerrar
 						sesión</a>
@@ -51,10 +52,10 @@
 		</form>
 	</nav>
 
-	<button type="button" class="btn btn-outline-primary mt-5 mb-3">
-		<a href="anadirUsuarioAdmin.html" th:href="@{/admin/addUsuario}">Añadir
-			Usuario</a>
-	</button>
+	<a href="anadirUsuarioAdmin.html" th:href="@{/admin/addUsuario}">
+		<button type="button" class="btn btn-outline-primary mt-5 mb-3">
+			Añadir Usuario</button>
+	</a>
 
 	<table class="table table-striped w-75">
 		<thead>
