@@ -25,15 +25,17 @@ public class Pedido {
 	private long id;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fecha;
+	private double precioFinal;
 
 	@OneToMany(mappedBy = "pedido")
 	private List<LineaPedido> lista;
 	@ManyToOne
 	private Usuario usuario;
 
-	public Pedido(LocalDate fecha, List<LineaPedido> lista, Usuario usuario) {
+	public Pedido(LocalDate fecha, double precioFinal, List<LineaPedido> lista, Usuario usuario) {
 		super();
 		this.fecha = fecha;
+		this.precioFinal = calcularPrecioFinal();
 		this.lista = lista;
 		this.usuario = usuario;
 	}
@@ -46,6 +48,14 @@ public class Pedido {
 	public void removeLineaPedido(LineaPedido linPed) {
 		this.lista.remove(linPed);
 		linPed.setPedido(null);
+	}
+
+	public double calcularPrecioFinal() {
+		double total = 0;
+		for (LineaPedido linPed : lista) {
+			total += linPed.getPrecioFinal();
+		}
+		return total;
 	}
 
 }

@@ -128,18 +128,18 @@ public class ProductoController {
 			@RequestParam("page") Optional<Integer> page, @RequestParam("modelo") Optional<String> modelo,
 			Model model, @RequestParam("size") Optional<Integer> size) {
 		
-		listaPaginada(page, size, model, productService.findAllByExist());
+//		listaPaginada(page, size, model, productService.findAllByExist());
 
 		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
 		// el tamaño de página inicial.
-//		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
 
 		// Calcula qué página se va a mostrar. Si el parámetro es "nulo" o menor
 		// que 0, se devuelve el valor inicial. De otro modo, se devuelve el valor
 		// del parámetro decrementado en 1.
-//		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
-//		String evalModelo = modelo.orElse(null);
+		String evalModelo = modelo.orElse(null);
 
 		Page<Producto> productos = null;
 
@@ -155,17 +155,14 @@ public class ProductoController {
 		// debe mostrar y cuál es el número de objetos a dibujar.
 		Pager pager = new Pager(productos.getTotalPages(), productos.getNumber(), BUTTONS_TO_SHOW);
 
-//		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		model.addAttribute("productos", productos);
-<<<<<<< HEAD
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
-=======
 //		model.addAttribute("selectedPageSize", evalPageSize);
 //		model.addAttribute("pageSizes", PAGE_SIZES);
 //		model.addAttribute("pager", pager);
->>>>>>> 85ea8ef6714443eff15c955781578bbf378c7cfc
 
 		model.addAttribute("listaProd", productService.findAllProducts());
 
@@ -194,7 +191,7 @@ public class ProductoController {
 		List<Producto> lista = new ArrayList<Producto>();
 		listaProduct.forEach((m) -> lista.add(m));
 		
-		Page<Producto> productPage = productService.findAllPageable(PageRequest.of(currentPage -1 , pageSize), lista);
+		Page<Producto> productPage = productService.findAllPageable(PageRequest.of(currentPage -1 , pageSize));
 		int totalPages = productPage.getTotalPages();
 		if (totalPages > 0) {
 			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());

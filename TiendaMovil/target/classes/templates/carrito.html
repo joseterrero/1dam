@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<title>Carrito de compra</title>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="La mejor tienda online con los últimos productos a la venta y con las mejores ofertas del mercado. Aprovecha ya y hazte con ellas. Página con los productos que desea comprar." />
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet" th:href="@{../css/carrito.css}">
+</head>
+
+<body>
+	<!--Header-->
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+		<!-- Links -->
+		<ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link" href="inicio.html"
+				th:href="@{/}">Inicio</a></li>
+			<li class="nav-item"><a class="nav-link" href="#"
+				th:href="@{/list}">Productos</a></li>
+			<li class="nav-item"><a class="nav-link" href="galeria.html"
+				th:href="@{/galeria}">Galería</a></li>
+			<li class="nav-item"><a class="nav-link" href="informacion.html"
+				th:href="@{/info}">Acerca de</a></li>
+
+			<!-- Carrito -->
+			<li class="carrito nav-item"><a class="nav-link" href="#"
+				th:href="@{/carrito}"> <img th:src="@{/img/carrito.png}"
+					alt="carrito compra">
+			</a></li>
+
+			<!-- Dropdown -->
+			<li class="desplegable nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				data-toggle="dropdown"> <span th:text="${usuario.username}"></span>
+			</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#"
+						th:href="@{/editar/{id}(id=${usuario.id})}">Editar perfil</a> <a
+						class="dropdown-item" th:href="@{/logout}"
+						href="javascript:document.getElementById('logoutForm').submit()">Cerrar
+						sesión</a>
+				</div></li>
+		</ul>
+	</nav>
+
+	<!--Section-->
+	<canvas id="canvas-basic"></canvas>
+	<section class="container-fluid col-12">
+
+		<div class="row">
+			<main class="col-12 col-md-12 d-flex justify-content-center">
+
+
+			<div class="col-md-8">
+				<!--Contenido-->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 col-md-10 col-md-offset-1">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Producto</th>
+										<th>Cantidad</th>
+										<th class="text-center">Precio</th>
+										<th class="text-center">Subtotal</th>
+										<th> </th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<!-- Bucle que va sacando los distintos elementos guardados en el carrito. Recordemos que es
+                                        un HashMap cuya clave es un  producto y cuyo valor es la cantidad de productos, por eso
+                                        vamos sacando un elemento del carrito, esto significa que element, es tipo Entry, es decir,
+                                        pareja clave-valor "entera" (producto-cantidad), por todo esto, cuando queremos, por ejemplo, 
+                                        mostrar el nombre del producto, accedemos mediante: 
+                                        ${element.key.nombre} ya que sacamos la clave de la pareja "entry" que es un producto, 
+                                        y a su vez, accedemos al tributo nombre de ese producto -->
+
+									<tr th:each="producto : ${products}">
+										<td class="col-sm-8 col-md-6">
+											<!---->
+											<div class="media">
+												<!-- <a class="thumbnail pull-left" href="#"> 
+                                                        <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${element.key.image}" /> </a>-->
+												<div class="media-body">
+													<h4 class="media-heading">
+														<a href="#"><span th:text="${producto.producto.id}">Product
+																name</span></a>
+													</h4>
+
+													<h4 class="media-heading">
+														<a href="#"><span
+															th:text="${producto.producto.modelo}">Product name</span></a>
+													</h4>
+
+
+												</div>
+											</div>
+										</td>
+										<td class="col-sm-1 col-md-1" style="text-align: center">
+											<p class="form-control" id="textQuantity"
+												th:text="${producto.cantidad}" />
+										</td>
+										<td class="col-sm-1 col-md-1 text-center"><strong
+											th:text="${producto.producto.precio}">$4.87</strong></td>
+										<!-- Como se puede ver en el manual de Th y hablamos en clase, en th se pueden hacer operaciones básicas con variables
+                                                como en java, por lo que se puede multiplicar un valor por otro, como por ejemplo, aquí en precio por cantidad -->
+
+										<td class="col-sm-1 col-md-1 text-center"><strong
+											th:text="${producto.precioFinal}">$14.61</strong></td>
+										<td class="col-sm-1 col-md-1"><a href="#"
+											th:href="@{/carrito/remove/{id}(id=${producto.producto.id})}">❌</a></td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td> </td>
+										<td> </td>
+										<td>
+											<h3>Total</h3>
+										</td>
+										<td class="text-right">
+											<h3>
+												<strong th:text="${totalCarrito}">100€</strong>
+											</h3>
+										</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td> </td>
+										<td> </td>
+										<td><a th:href="@{/list}">Continuar comprando</a></td>
+										<td><a th:href="@{/carrito/checkout}">
+												<button type="button" class="btn btn-success">
+													<span class="glyphicon glyphicon-play">Comprar </span>
+												</button>
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			</main>
+		</div>
+	</section>
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js}"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"></script>
+</body>
+
+</html>

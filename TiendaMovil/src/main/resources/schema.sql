@@ -11,9 +11,9 @@
 	
 	create sequence hibernate_sequence start with 1 increment by 1
     
-    create table linea_pedido (id bigint not null, cantidad bigint not null, pedido_id bigint, producto_id bigint, primary key (id))
+    create table linea_pedido (id bigint not null, cantidad bigint not null, pedido_id bigint, precio_linea_final double not null, producto_id bigint, primary key (id))
     
-    create table pedido (id bigint not null, fecha date, usuario_id bigint, primary key (id))
+    create table pedido (id bigint not null, precio_final double not null, fecha date, usuario_id bigint, primary key (id))
     
     create table producto (id bigint not null, cantidad bigint not null, capacidad bigint not null, color varchar(255), fecha date, file_url varchar(255), modelo varchar(255), precio double not null, ram bigint not null, usuario_id bigint, primary key (id))
     
@@ -28,3 +28,4 @@
     alter table pedido add constraint FK6uxomgomm93vg965o8brugt00 foreign key (usuario_id) references usuario
     
     alter table producto add constraint FK4f8g2yvj0uj7hqxlauy8p8k39 foreign key (usuario_id) references usuario
+    

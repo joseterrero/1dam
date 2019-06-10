@@ -23,11 +23,22 @@ public class LineaPedido {
 	private Producto producto;
 	@ManyToOne
 	private Pedido pedido;
+	private double precioFinal;
 
 	public LineaPedido(long cantidad, Producto producto, Pedido pedido) {
 		this.cantidad = cantidad;
 		this.producto = producto;
 		this.pedido = pedido;
+	}
+
+	public LineaPedido(Producto producto, long cantidad) {
+		this.producto = producto;
+		this.cantidad = cantidad;
+		this.precioFinal = calcularLineaFinal();
+	}
+
+	public double calcularLineaFinal() {
+		return this.getProducto().getPrecio() * this.getCantidad();
 	}
 
 }

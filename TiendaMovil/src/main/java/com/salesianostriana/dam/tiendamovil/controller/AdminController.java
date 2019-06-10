@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.salesianostriana.dam.tiendamovil.formbean.MensajeBean;
 import com.salesianostriana.dam.tiendamovil.formbean.SearchBean;
 import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
 import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
@@ -23,7 +25,7 @@ import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 public class AdminController {
 
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private HttpSession session;
 
@@ -35,12 +37,12 @@ public class AdminController {
 	// Listar
 	@GetMapping({ "/", "/listUsuarios" })
 	public String listarUsuarios(Model model) {
-		
+
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Usuario u = (Usuario) usuarioService.findOneByUsername(user.getUsername());
 		session.setAttribute("usuarioActual", u);
 		model.addAttribute("usuario", u);
-		
+
 		model.addAttribute("inputBuscar", new SearchBean());
 		model.addAttribute("lista", usuarioService.findAll());
 		return "admin/usuariosAdmin";
@@ -74,7 +76,18 @@ public class AdminController {
 	// Borrar
 	@GetMapping("/borrar/{id}")
 	public String borrar(@PathVariable("id") long id) {
-		usuarioService.delete(id);
+		Usuario usuario = usuarioService.findById(id);
+		Usuario sesion = (Usuario) session.getAttribute("usuarioActual");
+		ModelAndView mv = new ModelAndView();
+		MensajeBean mensaje = null;
+
+		if (usuario.getId() == sesion.getId()) {
+			mensaje = new MensajeBean("ERROR ",
+					usuario.getUsername() + ", no puede ser eliminado porque es el usuario actual.");
+			mv.setViewName("redirect:/admin/listUsuarios");
+		} else {
+			usuarioService.delete(id);
+		}
 		return "redirect:/admin/listUsuarios";
 	}
 

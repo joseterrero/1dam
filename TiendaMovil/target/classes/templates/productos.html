@@ -88,14 +88,12 @@
 							th:text="${#numbers.formatDecimal(producto.precio, 1, 2,'COMMA')} + ' €'"></span>
 					</p>
 					<!-- LINK CARRITO COMPRA -->
-					<a href="#" th:href="@{/carrito}" class="btn btn-primary">Añadir
+					<a href="#" th:href="@{/carrito/add/{id}(id=${producto.id})}" class="btn btn-primary">Añadir
 						a carrito</a>
 				</div>
 			</div>
 		</div>
 	</div>
-
-<<<<<<< HEAD
 	<div class="row">
 		<div class="form-group col-md-1 mx-auto">
 			<select class="form-control pagination" id="pageSizeSelect">
@@ -147,16 +145,14 @@
 		</div>
 		<div class="col-4"></div>
 	</div>
-=======
 	<nav aria-label="Page navigation example">
 		<ul class="pagination">
 			<li th:if="${productPage.totalPages > 0}" class="page-item"
-				th:each="pageNumber : ${pageNumbers}">
-				
-					<a th:href="@{/list(size=${productPage.size}, page=${pageNumber})}"
-						th:text=${pageNumber}
-						th:attr="class=|page-link ${pageNumber==productPage.number + 1} ? active|"></a>
-				</li>
+				th:each="pageNumber : ${pageNumbers}"><a
+				th:href="@{/list(size=${productPage.size}, page=${pageNumber})}"
+				th:text=${pageNumber}
+				th:attr="class=|page-link ${pageNumber==productPage.number + 1} ? active|"></a>
+			</li>
 		</ul>
 	</nav>
 
@@ -206,7 +202,6 @@
 	<!-- 			</ul> -->
 	<!-- 		</div> -->
 	<!-- 	</div> -->
->>>>>>> 85ea8ef6714443eff15c955781578bbf378c7cfc
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

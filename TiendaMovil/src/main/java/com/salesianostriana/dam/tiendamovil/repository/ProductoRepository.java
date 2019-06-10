@@ -18,6 +18,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
 	public Page<Producto> findByModeloContainingIgnoreCase(String modelo, Pageable pageable);
 	
-	public Iterable<Producto> listadoProductos();
+//	public Iterable<Producto> listadoProductos();
 
 }

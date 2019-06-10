@@ -43,22 +43,23 @@ public class ProductoService extends BaseService<Producto, Long, ProductoReposit
 		return repositorio.findByModeloContainingIgnoreCase(modelo);
 	}
 
-	public Page<Producto> findAllPageable(Pageable pageable, List<Producto> productos) {
-		 int pageSize = pageable.getPageSize();
-	        int currentPage = pageable.getPageNumber();
-	        int startItem = currentPage * pageSize;
-	       List<Producto> list;
+	public Page<Producto> findAllPageable(Pageable pageable) {
+//		 int pageSize = pageable.getPageSize();
+//	        int currentPage = pageable.getPageNumber();
+//	        int startItem = currentPage * pageSize;
+//	       List<Producto> list;
+//	 
+//	        if (productos.size() < startItem) {
+//	            list = Collections.emptyList();
+//	        } else {
+//	            int toIndex = Math.min(startItem + pageSize, productos.size());
+//	            list = productos.subList(startItem, toIndex);
+//	        } 
+//	 
+//	        Page<Producto> ProductosPage = new PageImpl<Producto>(list, PageRequest.of(currentPage, pageSize), productos.size());
 	 
-	        if (productos.size() < startItem) {
-	            list = Collections.emptyList();
-	        } else {
-	            int toIndex = Math.min(startItem + pageSize, productos.size());
-	            list = productos.subList(startItem, toIndex);
-	        } 
-	 
-	        Page<Producto> ProductosPage = new PageImpl<Producto>(list, PageRequest.of(currentPage, pageSize), productos.size());
-	 
-	        return ProductosPage;
+//	        return ProductosPage;
+		return repositorio.findAll(pageable);
 	}
 
 	public Page<Producto> findByModeloContainingIgnoreCasePageable(String modelo, Pageable pageable) {
@@ -101,8 +102,8 @@ public class ProductoService extends BaseService<Producto, Long, ProductoReposit
 		return result;
 	}
 	
-	public Iterable<Producto> findAllByExist() {
-		return repositorio.listadoProductos();
-	}
+//	public Iterable<Producto> findAllByExist() {
+//		return repositorio.listadoProductos();
+//	}
 
 }
