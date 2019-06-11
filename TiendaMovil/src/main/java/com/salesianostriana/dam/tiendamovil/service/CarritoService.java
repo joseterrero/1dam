@@ -43,8 +43,14 @@ public class CarritoService {
 	}
 
 	// Borrar linea de pedido
-	public void borrarLineaPedido(int index) {
-		lineasPedido.remove(index);
+	public void borrarLineaPedido(LineaPedido lineaPedido) {
+//		LineaPedido linPed = null;
+//		for (LineaPedido lineaPedido : lineasPedido) {
+//			if (lineaPedido.getId() == id) {
+//				linPed = lineaPedido;
+//			}
+//		}
+		lineasPedido.remove(lineaPedido);
 	}
 
 	// Calcular precio final
@@ -60,7 +66,7 @@ public class CarritoService {
 	public void limpiarCarrito() {
 		lineasPedido.clear();
 	}
-	
+
 	// Copia del carrito
 	public List<LineaPedido> getProductsInCart() {
 		return Collections.unmodifiableList(lineasPedido);

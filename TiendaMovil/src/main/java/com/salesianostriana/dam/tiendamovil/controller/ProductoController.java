@@ -126,7 +126,7 @@ public class ProductoController {
 	@GetMapping("/list")
 	public String showProductList(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page, @RequestParam("modelo") Optional<String> modelo,
-			Model model, @RequestParam("size") Optional<Integer> size) {
+			Model model) {
 		
 //		listaPaginada(page, size, model, productService.findAllByExist());
 
@@ -160,9 +160,6 @@ public class ProductoController {
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
-//		model.addAttribute("selectedPageSize", evalPageSize);
-//		model.addAttribute("pageSizes", PAGE_SIZES);
-//		model.addAttribute("pager", pager);
 
 		model.addAttribute("listaProd", productService.findAllProducts());
 

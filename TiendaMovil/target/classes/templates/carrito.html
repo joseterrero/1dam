@@ -63,7 +63,6 @@
 		<div class="row">
 			<main class="col-12 col-md-12 d-flex justify-content-center">
 
-
 			<div class="col-md-8">
 				<!--Contenido-->
 				<div class="container">
@@ -74,8 +73,8 @@
 									<tr>
 										<th>Producto</th>
 										<th>Cantidad</th>
-										<th class="text-center">Precio</th>
-										<th class="text-center">Subtotal</th>
+										<th class="text-center">Precio (€)</th>
+										<th class="text-center">Subtotal (€)</th>
 										<th> </th>
 									</tr>
 								</thead>
@@ -91,10 +90,7 @@
 
 									<tr th:each="producto : ${products}">
 										<td class="col-sm-8 col-md-6">
-											<!---->
 											<div class="media">
-												<!-- <a class="thumbnail pull-left" href="#"> 
-                                                        <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;" th:src="${element.key.image}" /> </a>-->
 												<div class="media-body">
 													<h4 class="media-heading">
 														<a href="#"><span th:text="${producto.producto.id}">Product
@@ -105,8 +101,6 @@
 														<a href="#"><span
 															th:text="${producto.producto.modelo}">Product name</span></a>
 													</h4>
-
-
 												</div>
 											</div>
 										</td>
@@ -120,7 +114,7 @@
                                                 como en java, por lo que se puede multiplicar un valor por otro, como por ejemplo, aquí en precio por cantidad -->
 
 										<td class="col-sm-1 col-md-1 text-center"><strong
-											th:text="${producto.precioFinal}">$14.61</strong></td>
+											th:text="${#numbers.formatDecimal(producto.cantidad*producto.producto.precio, 1, 2,'COMMA')}">$14.61</strong></td>
 										<td class="col-sm-1 col-md-1"><a href="#"
 											th:href="@{/carrito/remove/{id}(id=${producto.producto.id})}">❌</a></td>
 									</tr>
@@ -133,7 +127,8 @@
 										</td>
 										<td class="text-right">
 											<h3>
-												<strong th:text="${totalCarrito}">100€</strong>
+												<strong
+													th:text="${#numbers.formatDecimal(totalCarrito, 1, 2,'COMMA')} + ' €'">100€</strong>
 											</h3>
 										</td>
 									</tr>

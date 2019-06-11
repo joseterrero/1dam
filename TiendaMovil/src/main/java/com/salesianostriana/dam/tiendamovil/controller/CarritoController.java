@@ -6,14 +6,18 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.salesianostriana.dam.tiendamovil.formbean.SearchBean;
 import com.salesianostriana.dam.tiendamovil.modelo.LineaPedido;
 import com.salesianostriana.dam.tiendamovil.modelo.Pedido;
+import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
 import com.salesianostriana.dam.tiendamovil.service.CarritoService;
 import com.salesianostriana.dam.tiendamovil.service.LineaPedidoService;
 import com.salesianostriana.dam.tiendamovil.service.PedidoService;
@@ -67,16 +71,16 @@ public class CarritoController {
 	// Eliminar producto del carrito
 	@GetMapping("/carrito/remove/{id}")
 	public String borrarProductoCarrito(@PathVariable("id") long id) {
-		int index = 0;
+		LineaPedido idLineaPedido = null;
 
 		List<LineaPedido> lista = carritoService.getProductsInCart();
 
 		for (LineaPedido linPed : lista) {
-			if (linPed.getProducto() == productService.findById(id)) {
-				index = lista.indexOf(linPed);
+			if (linPed.getProducto().getId() == id) {
+				idLineaPedido = linPed;
 			}
 		}
-		carritoService.borrarLineaPedido(index);
+		carritoService.borrarLineaPedido(idLineaPedido);
 		return "redirect:/carrito";
 	}
 
@@ -94,27 +98,30 @@ public class CarritoController {
 		}
 		return 0.0;
 	}
-	
+
 	// Comprobacion carrito
 	@GetMapping("/carrito/checkout")
 	public String comprobarCompra(Model model) {
 		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
-		
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario u = (Usuario) usuarioService.findOneByUsername(user.getUsername());
 		List<LineaPedido> listaPedidos = carritoService.getProductsInCart();
 		Pedido pedido = new Pedido();
-		
+
 		for (LineaPedido linPed : listaPedidos) {
 			linPed.setPedido(pedido);
 		}
 		pedido.setFecha(LocalDate.now());
 		pedido.setPrecioFinal(carritoService.calculoPrecioFinal());
 		pedido.setLista(listaPedidos);
-//		pedido.setUsuario(usuario);
-		
+		pedido.setUsuario(u);
+
 		model.addAttribute("pedido", pedidoService.save(pedido));
 		carritoService.limpiarCarrito();
-		
-		return "productos";
+
+//		model.addAttribute("inputBuscar", new SearchBean());
+		return "inicio";
 	}
 
 }

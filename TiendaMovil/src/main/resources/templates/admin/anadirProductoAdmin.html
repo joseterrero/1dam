@@ -57,9 +57,18 @@
 							(Gb) <span class="text-danger">*</span>
 						</label>
 						<div class="">
-							<input id="capacidad" name="capacidad" type="number"
-								placeholder="Ej: 64" class="form-control input-md" min="1"
-								max="1000" required th:field="*{capacidad}">
+							<input id="capacidad" name="capacidad" value="32" type="radio"
+								placeholder="32" class="form-control input-md" checked
+								th:field="*{capacidad}">32 <br> <input
+								id="capacidad" name="capacidad" value="64" type="radio"
+								placeholder="64" class="form-control input-md"
+								th:field="*{capacidad}">64 <br> <input
+								id="capacidad" name="capacidad" value="128" type="radio"
+								placeholder="128" class="form-control input-md"
+								th:field="*{capacidad}">128 <br> <input
+								id="capacidad" name="capacidad" value="256" type="radio"
+								placeholder="256" class="form-control input-md"
+								th:field="*{capacidad}">256 <br>
 						</div>
 					</div>
 

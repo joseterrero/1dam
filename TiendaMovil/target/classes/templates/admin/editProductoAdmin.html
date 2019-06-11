@@ -21,9 +21,8 @@
 <body>
 
 	<div class="container">
-		<form class=""
-			th:action="${listaProd.id != 0} ? @{/admin/editarProd/submit} : @{/admin/newProductoAdmin}"
-			method="POST" th:object="${listaProd}" enctype="multipart/form-data">
+		<form class="" th:action="@{/admin/editarProd/submit}" method="POST"
+			th:object="${listaProd}" enctype="multipart/form-data">
 			<fieldset>
 
 				<!-- Form Name -->
