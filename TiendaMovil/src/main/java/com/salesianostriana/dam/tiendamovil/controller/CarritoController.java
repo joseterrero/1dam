@@ -65,7 +65,7 @@ public class CarritoController {
 	@GetMapping("/carrito/add/{id}")
 	public String addProductoCarrito(@PathVariable("id") long id, Model model) {
 		carritoService.addLineaPedido(productService.findById(id));
-		return "redirect:/list";
+		return "redirect:/carrito";
 	}
 
 	// Eliminar producto del carrito

@@ -38,10 +38,7 @@ public class AdminController {
 	@GetMapping({ "/", "/listUsuarios" })
 	public String listarUsuarios(Model model) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Usuario u = (Usuario) usuarioService.findOneByUsername(user.getUsername());
-		session.setAttribute("usuarioActual", u);
-		model.addAttribute("usuario", u);
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 
 		model.addAttribute("inputBuscar", new SearchBean());
 		model.addAttribute("lista", usuarioService.findAll());

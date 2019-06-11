@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,10 @@ import com.salesianostriana.dam.tiendamovil.formbean.SearchBean;
 import com.salesianostriana.dam.tiendamovil.formbean.UploadFormBean;
 import com.salesianostriana.dam.tiendamovil.modelo.Pager;
 import com.salesianostriana.dam.tiendamovil.modelo.Producto;
+import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
 import com.salesianostriana.dam.tiendamovil.repository.ProductoRepository;
 import com.salesianostriana.dam.tiendamovil.service.ProductoService;
+import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 
 @Controller
 public class ProductoController {
@@ -34,6 +38,8 @@ public class ProductoController {
 	private ProductoRepository productRepo;
 	@Autowired
 	private ProductoService productService;
+	@Autowired
+	private UsuarioService usuarioService;
 	@Autowired
 	private HttpSession session;
 
@@ -80,7 +86,11 @@ public class ProductoController {
 	// Listar
 	@GetMapping("/admin/listProductos")
 	public String listarProductos(Model model) {
-		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario u = (Usuario) usuarioService.findOneByUsername(user.getUsername());
+		session.setAttribute("usuarioActual", u);
+		model.addAttribute("usuario", u);
+		
 		model.addAttribute("inputBuscar", new SearchBean());
 		model.addAttribute("listaProd", productService.findAll());
 		return "admin/productosAdmin";

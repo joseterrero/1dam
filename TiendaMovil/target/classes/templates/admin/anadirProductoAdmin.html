@@ -57,18 +57,12 @@
 							(Gb) <span class="text-danger">*</span>
 						</label>
 						<div class="">
-							<input id="capacidad" name="capacidad" value="32" type="radio"
-								placeholder="32" class="form-control input-md" checked
-								th:field="*{capacidad}">32 <br> <input
-								id="capacidad" name="capacidad" value="64" type="radio"
-								placeholder="64" class="form-control input-md"
-								th:field="*{capacidad}">64 <br> <input
-								id="capacidad" name="capacidad" value="128" type="radio"
-								placeholder="128" class="form-control input-md"
-								th:field="*{capacidad}">128 <br> <input
-								id="capacidad" name="capacidad" value="256" type="radio"
-								placeholder="256" class="form-control input-md"
-								th:field="*{capacidad}">256 <br>
+							<select id="capacidad" name="capacidad" th:field="*{capacidad}">
+								<option th:value="32" th:text="32"></option>
+								<option th:value="64" th:text="64"></option>
+								<option th:value="128" th:text="128"></option>
+								<option th:value="256" th:text="256"></option>
+							</select>
 						</div>
 					</div>
 
@@ -78,9 +72,12 @@
 							class="text-danger">*</span>
 						</label>
 						<div class="">
-							<input id="ram" name="ram" type="number" placeholder="Ej: 4"
-								class="form-control input-md" min="1" max="8" required
-								th:field="*{ram}">
+							<select id="ram" name="ram" th:field="*{ram}">
+								<option th:value="2" th:text="2"></option>
+								<option th:value="4" th:text="4"></option>
+								<option th:value="6" th:text="6"></option>
+								<option th:value="8" th:text="8"></option>
+							</select>
 						</div>
 					</div>
 				</div>
