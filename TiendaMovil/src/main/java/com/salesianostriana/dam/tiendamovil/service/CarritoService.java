@@ -31,16 +31,24 @@ public class CarritoService {
 	public void addLineaPedido(Producto p) {
 
 		Boolean agregarAldv = false;
+
 		for (LineaPedido linPed : lineasPedido) {
 			if (linPed.getProducto().getId() == p.getId()) {
-				linPed.setCantidad(linPed.getCantidad() + 1);
-				agregarAldv = true;
+				if (productService.existenciaProductos(linPed.getProducto(), linPed.getCantidad() + 1)) {
+					linPed.setCantidad(linPed.getCantidad() + 1);
+					linPed.setPrecioFinal(p.getPrecio() * linPed.getCantidad());
+					agregarAldv = true;
+				} else {
+					linPed.setCantidad(linPed.getProducto().getCantidad());
+					agregarAldv = true;
+				}
 			}
 		}
 		if (agregarAldv == false) {
-			lineasPedido.add(new LineaPedido(p, 1));
+			if (p.getCantidad() - 1 >= 0) {
+				lineasPedido.add(new LineaPedido(p, 1));
+			}
 		}
-
 	}
 
 	// Borrar linea de pedido

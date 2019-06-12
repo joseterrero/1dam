@@ -15,14 +15,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.salesianostriana.dam.tiendamovil.formbean.MensajeBean;
 import com.salesianostriana.dam.tiendamovil.formbean.SearchBean;
+import com.salesianostriana.dam.tiendamovil.modelo.Pedido;
 import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
+import com.salesianostriana.dam.tiendamovil.service.PedidoService;
 import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private PedidoService pedidoService;
 
 	@Autowired
 	private HttpSession session;
@@ -81,6 +86,11 @@ public class AdminController {
 					usuario.getUsername() + ", no puede ser eliminado porque es el usuario actual.");
 			mv.setViewName("redirect:/admin/listUsuarios");
 		} else {
+			for (Pedido pedido : pedidoService.findAll()) {
+				if (pedido.getUsuario().getId() == id) {
+					pedido.setUsuario(null);
+				}
+			}
 			usuarioService.delete(id);
 		}
 		return "redirect:/admin/listUsuarios";

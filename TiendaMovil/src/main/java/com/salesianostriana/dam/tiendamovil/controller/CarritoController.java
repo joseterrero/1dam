@@ -105,6 +105,7 @@ public class CarritoController {
 
 		for (LineaPedido linPed : listaPedidos) {
 			linPed.setPedido(pedido);
+			productService.modificarStock(linPed.getProducto().getId(), linPed.getCantidad());
 		}
 		pedido.setFecha(LocalDate.now());
 		pedido.setPrecioFinal(carritoService.calculoPrecioFinal());

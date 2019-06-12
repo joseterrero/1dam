@@ -8,5 +8,9 @@ import com.salesianostriana.dam.tiendamovil.repository.LineaPedidoRepository;
 
 @Service
 public class LineaPedidoService extends BaseService<LineaPedido, Long, LineaPedidoRepository> {
+	
+	public LineaPedido findById(Long id) {
+		return repositorio.findById(id).orElse(null);
+	}
 
 }

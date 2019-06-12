@@ -80,4 +80,13 @@ public class ProductoService extends BaseService<Producto, Long, ProductoReposit
 		return result;
 	}
 
+	public void modificarStock(Long id, long cantidad) {
+		Producto producto = this.findById(id);
+		producto.setCantidad(producto.getCantidad() - cantidad);
+	}
+
+	public boolean existenciaProductos(Producto producto, long cantidad) {
+		return (producto.getCantidad() - cantidad >= 0);
+	}
+
 }
