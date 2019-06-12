@@ -1,13 +1,10 @@
 package com.salesianostriana.dam.tiendamovil.service;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,30 +32,11 @@ public class ProductoService extends BaseService<Producto, Long, ProductoReposit
 		return repositorio.findAll();
 	}
 
-//	public Producto findById(Long id) {
-//		return repositorio.findOne(id);
-//	}
-
 	public List<Producto> findByModelo(String modelo) {
 		return repositorio.findByModeloContainingIgnoreCase(modelo);
 	}
 
 	public Page<Producto> findAllPageable(Pageable pageable) {
-//		 int pageSize = pageable.getPageSize();
-//	        int currentPage = pageable.getPageNumber();
-//	        int startItem = currentPage * pageSize;
-//	       List<Producto> list;
-//	 
-//	        if (productos.size() < startItem) {
-//	            list = Collections.emptyList();
-//	        } else {
-//	            int toIndex = Math.min(startItem + pageSize, productos.size());
-//	            list = productos.subList(startItem, toIndex);
-//	        } 
-//	 
-//	        Page<Producto> ProductosPage = new PageImpl<Producto>(list, PageRequest.of(currentPage, pageSize), productos.size());
-	 
-//	        return ProductosPage;
 		return repositorio.findAll(pageable);
 	}
 
@@ -101,9 +79,5 @@ public class ProductoService extends BaseService<Producto, Long, ProductoReposit
 
 		return result;
 	}
-	
-//	public Iterable<Producto> findAllByExist() {
-//		return repositorio.listadoProductos();
-//	}
 
 }

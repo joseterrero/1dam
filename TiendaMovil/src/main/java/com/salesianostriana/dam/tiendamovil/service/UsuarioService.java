@@ -14,7 +14,7 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
 	public Usuario findOneByUsername(String username) {
 		return repositorio.findFirstByUsername(username);
 	}
-	
+
 	public List<Usuario> findByNombre(String nombre) {
 		return repositorio.findByNombreContainingIgnoreCase(nombre);
 	}

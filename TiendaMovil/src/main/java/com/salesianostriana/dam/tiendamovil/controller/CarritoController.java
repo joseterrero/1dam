@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.salesianostriana.dam.tiendamovil.formbean.SearchBean;
 import com.salesianostriana.dam.tiendamovil.modelo.LineaPedido;
 import com.salesianostriana.dam.tiendamovil.modelo.Pedido;
 import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
@@ -26,11 +25,6 @@ import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
 
 @Controller
 public class CarritoController {
-
-	private static final int BUTTONS_TO_SHOW = 5;
-	private static final int INITIAL_PAGE = 0;
-	private static final int INITIAL_PAGE_SIZE = 5;
-	private static final int[] PAGE_SIZES = { 5, 10, 20, 50 };
 
 	@Autowired
 	private UsuarioService usuarioService;
@@ -120,8 +114,7 @@ public class CarritoController {
 		model.addAttribute("pedido", pedidoService.save(pedido));
 		carritoService.limpiarCarrito();
 
-//		model.addAttribute("inputBuscar", new SearchBean());
-		return "inicio";
+		return "mensajeCarrito";
 	}
 
 }

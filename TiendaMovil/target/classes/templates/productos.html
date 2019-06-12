@@ -16,6 +16,7 @@
 	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{../css/estilos.css}">
 <link rel="stylesheet" type="text/css" th:href="@{../css/productos.css}">
 </head>
 
@@ -55,17 +56,16 @@
 		</ul>
 	</nav>
 	<nav class="navbar navbar-expand-sm navbar-dark">
-		<form class="form-inline" action="#" th:action="@{/search}"
-			th:object="${inputBuscar}" method="POST">
-			<input class="form-control mr-sm-2" type="text" name="nombre"
-				placeholder="Buscar por nombre" th:field="*{search}">
+		<form class="form-inline" action="#" th:action="@{/list}" method="GET">
+			<input class="form-control mr-sm-2" type="text" name="modelo"
+				placeholder="Buscar por nombre">
 			<button class="btn btn-success" type="submit">Buscar</button>
 		</form>
 	</nav>
 
 	<div class="row">
 		<div class="col-lg-3 col-md-6 mb-lg-0 mb-4 mt-4"
-			th:each="producto: ${listaProd}">
+			th:each="producto : ${productos}">
 			<div class="card m-4" style="width: 18rem;">
 				<img class="card-img-top" th:src="@{/images/}+${producto.fileUrl}"
 					alt="Imagen del producto">
@@ -88,8 +88,8 @@
 							th:text="${#numbers.formatDecimal(producto.precio, 1, 2,'COMMA')} + ' €'"></span>
 					</p>
 					<!-- LINK CARRITO COMPRA -->
-					<a href="#" th:href="@{/carrito/add/{id}(id=${producto.id})}" class="btn btn-primary">Añadir
-						a carrito</a>
+					<a href="#" th:href="@{/carrito/add/{id}(id=${producto.id})}"
+						class="btn btn-primary">Añadir a carrito</a>
 				</div>
 			</div>
 		</div>

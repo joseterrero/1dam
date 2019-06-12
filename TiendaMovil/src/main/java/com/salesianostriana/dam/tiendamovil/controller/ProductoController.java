@@ -1,10 +1,6 @@
 package com.salesianostriana.dam.tiendamovil.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpSession;
 
@@ -45,8 +41,8 @@ public class ProductoController {
 
 	private static final int BUTTONS_TO_SHOW = 5;
 	private static final int INITIAL_PAGE = 0;
-	private static final int INITIAL_PAGE_SIZE = 5;
-	private static final int[] PAGE_SIZES = { 5, 10, 20, 50 };
+	private static final int INITIAL_PAGE_SIZE = 4;
+	private static final int[] PAGE_SIZES = { 4, 10, 20, 40, 50 };
 
 	// Añadir
 	@GetMapping("/admin/addProducto")
@@ -90,11 +86,10 @@ public class ProductoController {
 		Usuario u = (Usuario) usuarioService.findOneByUsername(user.getUsername());
 		session.setAttribute("usuarioActual", u);
 		model.addAttribute("usuario", u);
-		
+
 		model.addAttribute("inputBuscar", new SearchBean());
 		model.addAttribute("listaProd", productService.findAll());
 		return "admin/productosAdmin";
-
 	}
 
 	// Editar
@@ -137,8 +132,6 @@ public class ProductoController {
 	public String showProductList(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page, @RequestParam("modelo") Optional<String> modelo,
 			Model model) {
-		
-//		listaPaginada(page, size, model, productService.findAllByExist());
 
 		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
 		// el tamaño de página inicial.
@@ -171,8 +164,6 @@ public class ProductoController {
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
 
-		model.addAttribute("listaProd", productService.findAllProducts());
-
 		/*
 		 * La siguiente línea viene del último método, que se dedica a buscar, para que
 		 * este método, muestre también el listado de productos cuando se han buscado,
@@ -182,37 +173,12 @@ public class ProductoController {
 		model.addAttribute("inputBuscar", new SearchBean());
 		return "productos";
 	}
-	
-	/**
-	 * Se utiliza para paginar un lista de productos
-	 * @param page es el número de página actual
-	 * @param size es el tamaño de la lista
-	 * @param model es el modelo
-	 * @param listaProduct es el tipo de lista de categoria que va a paginar
-	 */
-	public void listaPaginada (Optional<Integer> page, Optional<Integer> size, Model model, Iterable<Producto> listaProduct ) {
-		
-		int currentPage = (page !=null) ? page.orElse(1) : 1;
-		int pageSize = (size !=null ) ? size.orElse(5) : 5;
-		
-		List<Producto> lista = new ArrayList<Producto>();
-		listaProduct.forEach((m) -> lista.add(m));
-		
-		Page<Producto> productPage = productService.findAllPageable(PageRequest.of(currentPage -1 , pageSize));
-		int totalPages = productPage.getTotalPages();
-		if (totalPages > 0) {
-			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
-			model.addAttribute("pageNumbers", pageNumbers);
-		}
-		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
-		model.addAttribute("productPage", productPage);
-	}
 
 	/* Método para buscar productos */
 	@PostMapping("/search")
 	public String searchProducto(@ModelAttribute("inputBuscar") SearchBean searchBean, Model model) {
 		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
-		model.addAttribute("listaProd", productService.findByModelo(searchBean.getSearch()));
+		model.addAttribute("productos", productService.findByModelo(searchBean.getSearch()));
 		return "productos";
 	}
 

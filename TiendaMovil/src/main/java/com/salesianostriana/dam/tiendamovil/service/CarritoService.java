@@ -2,7 +2,6 @@ package com.salesianostriana.dam.tiendamovil.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,9 @@ public class CarritoService {
 	private LineaPedidoRepository linPedRepo;
 	@Autowired
 	private ProductoService productService;
+
 	private List<LineaPedido> lineasPedido = new ArrayList<>();
+
 	@Autowired
 	LineaPedidoService linPedService;
 
@@ -44,12 +45,6 @@ public class CarritoService {
 
 	// Borrar linea de pedido
 	public void borrarLineaPedido(LineaPedido lineaPedido) {
-//		LineaPedido linPed = null;
-//		for (LineaPedido lineaPedido : lineasPedido) {
-//			if (lineaPedido.getId() == id) {
-//				linPed = lineaPedido;
-//			}
-//		}
 		lineasPedido.remove(lineaPedido);
 	}
 

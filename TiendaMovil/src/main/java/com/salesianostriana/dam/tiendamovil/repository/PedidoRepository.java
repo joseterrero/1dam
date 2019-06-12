@@ -11,10 +11,13 @@ import com.salesianostriana.dam.tiendamovil.modelo.Pedido;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
-	
+
 	public List<Pedido> findByUsuario(long id);
+
 	public Page<Pedido> findByUsuario(long id, Pageable pageable);
+
 	public List<Pedido> findById(long id);
+
 	public Page<Pedido> findById(long id, Pageable pageable);
 
 }

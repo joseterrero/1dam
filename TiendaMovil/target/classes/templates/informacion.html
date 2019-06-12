@@ -16,8 +16,14 @@
 	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{../css/estilos.css}">
 <link rel="stylesheet" type="text/css"
 	th:href="@{../css/informacion.css}">
+<style type="text/css">
+#map {
+	height: 100%;
+}
+</style>
 </head>
 
 <body>
@@ -128,6 +134,7 @@
 								<strong>Teléfono de contacto del centro:</strong> +34 954 33 14
 								88
 							</p>
+							<div id="map"></div>
 						</div>
 					</div>
 				</div>
@@ -166,6 +173,9 @@
 		th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+		async defer></script>
 </body>
 
 </html>
