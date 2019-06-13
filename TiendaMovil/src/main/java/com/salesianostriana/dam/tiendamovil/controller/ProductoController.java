@@ -132,6 +132,8 @@ public class ProductoController {
 	public String showProductList(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page, @RequestParam("modelo") Optional<String> modelo,
 			Model model) {
+		
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 
 		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve
 		// el tamaño de página inicial.
@@ -158,19 +160,11 @@ public class ProductoController {
 		// debe mostrar y cuál es el número de objetos a dibujar.
 		Pager pager = new Pager(productos.getTotalPages(), productos.getNumber(), BUTTONS_TO_SHOW);
 
-		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 		model.addAttribute("productos", productos);
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pageSizes", PAGE_SIZES);
 		model.addAttribute("pager", pager);
 
-		/*
-		 * La siguiente línea viene del último método, que se dedica a buscar, para que
-		 * este método, muestre también el listado de productos cuando se han buscado,
-		 * añadimos al model el objeto tipo bean de búsqueda cuando se está buscando
-		 * algún producto
-		 */
-		model.addAttribute("inputBuscar", new SearchBean());
 		return "productos";
 	}
 

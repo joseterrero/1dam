@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.tiendamovil.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class LineaPedido {
 	private Producto producto;
 	@ManyToOne
 	private Pedido pedido;
+	@Column(name = "precio_linea_final")
 	private double precioFinal;
 
 	public LineaPedido(long cantidad, Producto producto, Pedido pedido) {

@@ -36,7 +36,7 @@
 						<div class="">
 							<input id="nombre" name="nombre" type="text"
 								placeholder="Ej: Pepe" class="form-control input-md" required
-								th:field="*{nombre}">
+								th:field="*{nombre}" pattern="[A-Za-z]">
 						</div>
 					</div>
 
@@ -48,7 +48,7 @@
 						<div class="">
 							<input id="apellidos" name="apellidos" type="text"
 								placeholder="Ej: Pérez" class="form-control input-md" required
-								th:field="*{apellidos}">
+								th:field="*{apellidos}" pattern="[A-Za-z]">
 						</div>
 					</div>
 

@@ -92,7 +92,9 @@
 						</label>
 						<div class="">
 							<input id="fecha" name="fecha" type="date"
-								class="form-control input-md" required th:field="*{fecha}">
+								class="form-control input-md" required th:field="*{fecha}"
+								pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}
+								">
 						</div>
 					</div>
 
@@ -116,7 +118,7 @@
 						<div class="">
 							<input id="cantidad" name="cantidad" type="number"
 								class="form-control input-md" min="0" required
-								th:field="*{cantidad}">
+								th:field="*{cantidad}" pattern="[0-9]">
 						</div>
 					</div>
 					<input type="hidden" th:field="*{fileUrl}">

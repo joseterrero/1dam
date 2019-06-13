@@ -17,11 +17,18 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" th:href="@{../css/estilos.css}">
-<link rel="stylesheet" type="text/css"
-	th:href="@{../css/informacion.css}">
+<link rel="stylesheet" type="text/css" href="/css/informacion.css"
+	th:href="@{/css/informacion.css}">
 <style type="text/css">
 #map {
-	height: 100%;
+	width: 50%;
+	height: 500px;
+	margin-left: 7%;
+}
+
+.columna {
+	width: 45%;
+	float: left;
 }
 </style>
 </head>
@@ -106,35 +113,39 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 						data-parent="#accordion">
 						<div class="card-body">
-							<p>
-								<strong>Redes Sociales:</strong>
-							</p>
-							<p>
-								<a href="https://twitter.com/jose_terrero99"> <img
-									src="../img/twitter.png" alt="Cuenta personal de Twitter"
-									class="text-hide rounded-circle" th:src="@{/img/twitter.png}">
-								</a> &nbsp <a href="https://www.facebook.com/joseterrero99"> <img
-									src="../img/facebook.jpg" alt="Cuenta personal de Facebook"
-									class="text-hide rounded-circle" th:src="@{/img/facebook.jpg}">
-								</a> &nbsp <a href="https://www.instagram.com/jose_terrero99"> <img
-									src="../img/insta.png" alt="Cuenta personal de Instagram"
-									class="text-hide rounded-circle" th:src="@{/img/insta.png}">
-								</a>
-							</p>
-							<p>
-								<strong>Correo:</strong> josetg999@gmail.com
-							</p>
-							<p>
-								<strong>Teléfono de contacto:</strong> +34 123 456 789
-							</p>
-							<p>
-								<strong>Dirección del centro:</strong> c/ Condes de Bustillo 17
-							</p>
-							<p>
-								<strong>Teléfono de contacto del centro:</strong> +34 954 33 14
-								88
-							</p>
-							<div id="map"></div>
+							<div class="columna">
+								<p>
+									<strong>Redes Sociales:</strong>
+								</p>
+								<p>
+									<a href="https://twitter.com/jose_terrero99"> <img
+										src="../img/twitter.png" alt="Cuenta personal de Twitter"
+										class="text-hide rounded-circle" th:src="@{/img/twitter.png}">
+									</a> &nbsp <a href="https://www.facebook.com/joseterrero99"> <img
+										src="../img/facebook.jpg" alt="Cuenta personal de Facebook"
+										class="text-hide rounded-circle" th:src="@{/img/facebook.jpg}">
+									</a> &nbsp <a href="https://www.instagram.com/jose_terrero99">
+										<img src="../img/insta.png" alt="Cuenta personal de Instagram"
+										class="text-hide rounded-circle" th:src="@{/img/insta.png}">
+									</a>
+								</p>
+								<p>
+									<strong>Correo:</strong> josetg999@gmail.com
+								</p>
+								<p>
+									<strong>Teléfono de contacto:</strong> +34 123 456 789
+								</p>
+								<p>
+									<strong>Dirección del centro:</strong> c/ Condes de Bustillo 17
+								</p>
+								<p>
+									<strong>Teléfono de contacto del centro:</strong> +34 954 33 14
+									88
+								</p>
+							</div>
+							<div>
+								<div id="map"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -173,8 +184,10 @@
 		th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/mapa.js}"
+		src="/js/mapa.js"></script>
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzexUfAlQiftpY9leRidSNS8IBQtp6I-c&callback=initMap"
 		async defer></script>
 </body>
 
