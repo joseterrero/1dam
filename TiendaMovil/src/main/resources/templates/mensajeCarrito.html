@@ -21,38 +21,41 @@
 
 <body>
 
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<header>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
-		<!-- Links -->
-		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="#" th:href="@{/}">Inicio</a></li>
-			<li class="nav-item"><a class="nav-link" href="productos.html"
-				th:href="@{/list}">Productos</a></li>
-			<li class="nav-item"><a class="nav-link" href="galeria.html"
-				th:href="@{/galeria}">Galería</a></li>
-			<li class="nav-item"><a class="nav-link" href="informacion.html"
-				th:href="@{/info}">Acerca de</a></li>
+			<!-- Links -->
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#"
+					th:href="@{/}">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link" href="productos.html"
+					th:href="@{/list}">Productos</a></li>
+				<li class="nav-item"><a class="nav-link" href="galeria.html"
+					th:href="@{/galeria}">Galería</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="informacion.html" th:href="@{/info}">Acerca de</a></li>
 
-			<!-- Carrito -->
-			<li class="carrito nav-item"><a class="nav-link" href="#"
-				th:href="@{/carrito}"> <img th:src="@{/img/carrito.png}"
-					alt="carrito compra">
-			</a></li>
+				<!-- Carrito -->
+				<li class="carrito nav-item"><a class="nav-link" href="#"
+					th:href="@{/carrito}"> <img th:src="@{/img/carrito.png}"
+						alt="carrito compra">
+				</a></li>
 
-			<!-- Dropdown -->
-			<li class="desplegable nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown"> <span th:text="${usuario.username}"></span>
-			</a>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#"
-						th:href="@{/editar/{id}(id=${usuario.id})}">Editar perfil</a> <a
-						class="dropdown-item" th:href="@{/logout}"
-						href="javascript:document.getElementById('logoutForm').submit()">Cerrar
-						sesión </a>
-				</div></li>
-		</ul>
-	</nav>
+				<!-- Dropdown -->
+				<li class="desplegable nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown"> <span th:text="${usuario.username}"></span>
+				</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#"
+							th:href="@{/editar/{id}(id=${usuario.id})}">Editar perfil</a> <a
+							class="dropdown-item" th:href="@{/logout}"
+							href="javascript:document.getElementById('logoutForm').submit()">Cerrar
+							sesión </a>
+					</div></li>
+			</ul>
+		</nav>
+	</header>
 
 	<main> <br>
 	<br>

@@ -1,0 +1,12 @@
+table{
+    margin-left: 12%;
+    margin-top: 10%;
+}
+
+tr th:nth-child(n+2), tr td:nth-child(n+2){
+    text-align: center;
+}
+
+h5{
+	margin-top: 17%;
+}

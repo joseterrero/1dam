@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.tiendamovil.baseservice.BaseService;
 import com.salesianostriana.dam.tiendamovil.modelo.Pedido;
+import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
 import com.salesianostriana.dam.tiendamovil.repository.PedidoRepository;
 
 @Service
@@ -27,8 +28,8 @@ public class PedidoService extends BaseService<Pedido, Long, PedidoRepository> {
 		return pedidoRepo.findAll(pageable);
 	}
 
-	public Page<Pedido> findByUserFA(long id, Pageable pageable) {
-		return pedidoRepo.findByUsuario(id, pageable);
+	public Page<Pedido> findByUsuario(Usuario usuario, Pageable pageable) {
+		return pedidoRepo.findByUsuario(usuario, pageable);
 	}
 
 }
