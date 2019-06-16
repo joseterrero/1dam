@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.salesianostriana.dam.tiendamovil.modelo.LineaPedido;
 import com.salesianostriana.dam.tiendamovil.modelo.Pager;
 import com.salesianostriana.dam.tiendamovil.modelo.Pedido;
 import com.salesianostriana.dam.tiendamovil.modelo.Usuario;
+import com.salesianostriana.dam.tiendamovil.service.LineaPedidoService;
 import com.salesianostriana.dam.tiendamovil.service.PedidoService;
 import com.salesianostriana.dam.tiendamovil.service.ProductoService;
 import com.salesianostriana.dam.tiendamovil.service.UsuarioService;
@@ -37,6 +39,8 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private PedidoService pedidoService;
+	@Autowired
+	private LineaPedidoService linPedService;
 
 	private static final int BUTTONS_TO_SHOW = 5;
 	private static final int INITIAL_PAGE = 0;
@@ -125,6 +129,28 @@ public class UsuarioController {
 			return total;
 		}
 		return 0.0;
+	}
+
+	@GetMapping("/historico/detalles/{id}")
+	public String mostrarHistoricoLineaPedidos(@PathVariable("id") long id,
+			@RequestParam("pageSize") Optional<Integer> pageSize, @RequestParam("page") Optional<Integer> page,
+			Model model) {
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
+
+		Pedido pedido = pedidoService.findById(id);
+		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+		Page<LineaPedido> lineasPedido = null;
+		lineasPedido = linPedService.findByPedido(pedido, PageRequest.of(evalPage, evalPageSize));
+
+		Pager pager = new Pager(lineasPedido.getTotalPages(), lineasPedido.getNumber(), BUTTONS_TO_SHOW);
+
+		model.addAttribute("lineasPedido", lineasPedido);
+		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("pageSizes", PAGE_SIZES);
+		model.addAttribute("pager", pager);
+		return "historicoDetalles";
 	}
 
 }

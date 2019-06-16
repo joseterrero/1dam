@@ -3,13 +3,13 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-<title>Inicio</title>
+<title>Historial Pedidos</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description"
-	content="La mejor tienda online con los últimos productos a la venta y con las mejores ofertas del mercado. Aprovecha ya y hazte con ellas. Página principal después de loguearse." />
+	content="La mejor tienda online con los últimos productos a la venta y con las mejores ofertas del mercado. Aprovecha ya y hazte con ellas. Página con el historial de las líneas de pedidos del usuario." />
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -27,7 +27,7 @@
 
 			<!-- Links -->
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="#"
+				<li class="nav-item"><a class="nav-link" href="#"
 					th:href="@{/}">Inicio</a></li>
 				<li class="nav-item"><a class="nav-link" href="productos.html"
 					th:href="@{/list}">Productos</a></li>
@@ -61,39 +61,24 @@
 
 	<main> <!--Tabla-->
 	<div class="table-responsive">
-		<h1 class="text-center mt-5">Historial de pedidos</h1>
 		<table class="table table-striped w-75">
 			<thead>
 				<tr>
-					<th scope="col">ID Pedido</th>
-					<th scope="col">Fecha</th>
-					<th scope="col">Frecio final</th>
-					<th scope="col">Detalles</th>
-
+					<th scope="col">Linea pedido</th>
+					<th scope="col">Producto</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Cantidad</th>
+					<th scope="col">Subtotal</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="pedido : ${pedidos}">
-					<td th:text="${pedido.id}"></td>
-					<td th:text="${#temporals.format(pedido.fecha, 'dd/MM/yyyy')}"></td>
+				<tr th:each="linPed : ${lineasPedido}">
+					<td th:text="${linPed.id}"></td>
+					<td th:text="${linPed.producto.modelo}"></td>
 					<td
-						th:text="${#numbers.formatDecimal(pedido.precioFinal, 1, 2,'COMMA')} + '€'"></td>
-					<td><a href=""
-						th:href="@{/historico/detalles/{id}(id=${pedido.id})}">Detalles</a></td>
-				</tr>
-				<tr>
-					<td> </td>
-					<td> </td>
-					<td> 
-						<h3>Total gastado</h3>
-					</td>
-					<td></td>
-					<td class="text-right">
-						<h5>
-							<strong
-								th:text="${#numbers.formatDecimal(totalGastado, 1, 2,'COMMA')} + '€'">100€</strong>
-						</h5>
-					</td>
+						th:text="${#numbers.formatDecimal(linPed.producto.precio, 1, 2,'COMMA')} + '€'"></td>
+					<td th:text="${linPed.cantidad}"></td>
+					<td th:text="${linPed.precioFinal}"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -112,39 +97,40 @@
 		<div class="col-3"></div>
 		<div class="col-4" style="text-align: center;">
 			<nav aria-label="Page navigation example mx-auto">
-				<ul th:if="${pedidos.totalPages != 1}"
+				<ul th:if="${lineasPedido.totalPages != 1}"
 					class="pagination pagination-circle pg-blue">
-					<li th:class="${pedidos.number == 0} ? disabled"
+					<li th:class="${lineasPedido.number == 0} ? disabled"
 						class="page-item disabled"><a
-						th:href="@{/(pageSize=${selectedPageSize}, page=1)}"
+						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=1)}"
 						class="page-link">First</a></li>
 
-					<li th:class="${pedidos.number == 0} ? disabled"
+					<li th:class="${lineasPedido.number == 0} ? disabled"
 						class="page-item disabled"></li>
 					<a
-						th:href="@{/(pageSize=${selectedPageSize}, page=${pedidos.number})}"
+						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=${lineasPedido.number})}"
 						class="page-link" aria-label="Previous"> <span
 						aria-hidden="true">&larr;</span>
 					</a>
 
 					<li
-						th:class="${pedidos.number == (page - 1)} ? 'active pointer-disabled'"
+						th:class="${lineasPedido.number == (page - 1)} ? 'active pointer-disabled'"
 						class="page-item active"
 						th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-						<a th:href="@{/(pageSize=${selectedPageSize}, page=${page})}"
+						<a
+						th:href="@{/historico/detalles/(pageSize=${selectedPageSize}, page=${page})}"
 						class="page-link" th:text="${page}">1</a>
 					</li>
 
 					<li
-						th:class="${pedidos.number + 1 == pedidos.totalPages} ? disabled"
+						th:class="${lineasPedido.number + 1 == lineasPedido.totalPages} ? disabled"
 						class="page-item"><a
-						th:href="@{/(pageSize=${selectedPageSize}, page=${pedidos.number + 2})}"
+						th:href="@{/historico/detalles/(pageSize=${selectedPageSize}, page=${lineasPedido.number + 2})}"
 						class="page-link">&rarr;</a></li>
 
 					<li
-						th:class="${pedidos.number + 1 == pedidos.totalPages} ? disabled"
+						th:class="${lineasPedido.number + 1 == lineasPedido.totalPages} ? disabled"
 						class="page-item"><a
-						th:href="@{/(pageSize=${selectedPageSize}, page=${pedidos.totalPages})}"
+						th:href="@{/historico/detalles/(pageSize=${selectedPageSize}, page=${lineasPedido.totalPages})}"
 						class="page-link">Last</a></li>
 				</ul>
 			</nav>
