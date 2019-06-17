@@ -16,8 +16,8 @@
 	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" th:href="@{../css/estilos.css}">
-<link rel="stylesheet" type="text/css" th:href="@{../css/inicio.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/inicio.css}">
 </head>
 
 <body>
@@ -61,6 +61,7 @@
 
 	<main> <!--Tabla-->
 	<div class="table-responsive">
+	<h1 class="text-center mt-5">Detalles del pedido</h1>
 		<table class="table table-striped w-75">
 			<thead>
 				<tr>
@@ -117,20 +118,20 @@
 						class="page-item active"
 						th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
 						<a
-						th:href="@{/historico/detalles/(pageSize=${selectedPageSize}, page=${page})}"
+						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=${page})}"
 						class="page-link" th:text="${page}">1</a>
 					</li>
 
 					<li
 						th:class="${lineasPedido.number + 1 == lineasPedido.totalPages} ? disabled"
 						class="page-item"><a
-						th:href="@{/historico/detalles/(pageSize=${selectedPageSize}, page=${lineasPedido.number + 2})}"
+						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=${lineasPedido.number + 2})}"
 						class="page-link">&rarr;</a></li>
 
 					<li
 						th:class="${lineasPedido.number + 1 == lineasPedido.totalPages} ? disabled"
 						class="page-item"><a
-						th:href="@{/historico/detalles/(pageSize=${selectedPageSize}, page=${lineasPedido.totalPages})}"
+						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=${lineasPedido.totalPages})}"
 						class="page-link">Last</a></li>
 				</ul>
 			</nav>

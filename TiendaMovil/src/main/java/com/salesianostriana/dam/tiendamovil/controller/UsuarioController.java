@@ -96,7 +96,7 @@ public class UsuarioController {
 		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
 
-		Page<Pedido> pedidos = null;
+		Page<Pedido> pedidos;
 		pedidos = pedidoService.findByUsuario(u, PageRequest.of(evalPage, evalPageSize));
 
 		// Obtenemos la página definida por evalPage y evalPageSize de objetos de
@@ -131,7 +131,7 @@ public class UsuarioController {
 		return 0.0;
 	}
 
-	@GetMapping("/historico/detalles/{id}")
+	@GetMapping("/historico/detalles{id}")
 	public String mostrarHistoricoLineaPedidos(@PathVariable("id") long id,
 			@RequestParam("pageSize") Optional<Integer> pageSize, @RequestParam("page") Optional<Integer> page,
 			Model model) {

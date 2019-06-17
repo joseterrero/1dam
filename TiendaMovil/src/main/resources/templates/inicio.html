@@ -59,8 +59,8 @@
 		</nav>
 	</header>
 
-	<main> <!--Tabla-->
-	<div class="table-responsive">
+	<main > <!--Tabla-->
+	<div class="table-responsive" id="tabla" th:if="${pedidos != 0}">
 		<h1 class="text-center mt-5">Historial de pedidos</h1>
 		<table class="table table-striped w-75">
 			<thead>
@@ -68,7 +68,7 @@
 					<th scope="col">ID Pedido</th>
 					<th scope="col">Fecha</th>
 					<th scope="col">Frecio final</th>
-					<th scope="col">Detalles</th>
+					<th scope="col"></th>
 
 				</tr>
 			</thead>
@@ -79,7 +79,7 @@
 					<td
 						th:text="${#numbers.formatDecimal(pedido.precioFinal, 1, 2,'COMMA')} + '€'"></td>
 					<td><a href=""
-						th:href="@{/historico/detalles/{id}(id=${pedido.id})}">Detalles</a></td>
+						th:href="@{/historico/detalles{id}(id=${pedido.id})}">Detalles</a></td>
 				</tr>
 				<tr>
 					<td> </td>
@@ -100,7 +100,7 @@
 	</div>
 	</main>
 
-	<div class="row">
+	<div class="row" th:if="${pedidos} != 0">
 		<div class="form-group col-md-1 mx-auto">
 			<select class="form-control pagination" id="pageSizeSelect">
 				<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
