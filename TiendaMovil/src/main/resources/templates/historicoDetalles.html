@@ -86,59 +86,6 @@
 	</div>
 	</main>
 
-	<div class="row">
-		<div class="form-group col-md-1 mx-auto">
-			<select class="form-control pagination" id="pageSizeSelect">
-				<option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-					th:value="${pageSize}"
-					th:selected="${pageSize} == ${selectedPageSize}"></option>
-			</select>
-		</div>
-
-		<div class="col-3"></div>
-		<div class="col-4" style="text-align: center;">
-			<nav aria-label="Page navigation example mx-auto">
-				<ul th:if="${lineasPedido.totalPages != 1}"
-					class="pagination pagination-circle pg-blue">
-					<li th:class="${lineasPedido.number == 0} ? disabled"
-						class="page-item disabled"><a
-						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=1)}"
-						class="page-link">First</a></li>
-
-					<li th:class="${lineasPedido.number == 0} ? disabled"
-						class="page-item disabled"></li>
-					<a
-						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=${lineasPedido.number})}"
-						class="page-link" aria-label="Previous"> <span
-						aria-hidden="true">&larr;</span>
-					</a>
-
-					<li
-						th:class="${lineasPedido.number == (page - 1)} ? 'active pointer-disabled'"
-						class="page-item active"
-						th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-						<a
-						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=${page})}"
-						class="page-link" th:text="${page}">1</a>
-					</li>
-
-					<li
-						th:class="${lineasPedido.number + 1 == lineasPedido.totalPages} ? disabled"
-						class="page-item"><a
-						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=${lineasPedido.number + 2})}"
-						class="page-link">&rarr;</a></li>
-
-					<li
-						th:class="${lineasPedido.number + 1 == lineasPedido.totalPages} ? disabled"
-						class="page-item"><a
-						th:href="@{/historico/detalles(pageSize=${selectedPageSize}, page=${lineasPedido.totalPages})}"
-						class="page-link">Last</a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="col-4"></div>
-	</div>
-
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"

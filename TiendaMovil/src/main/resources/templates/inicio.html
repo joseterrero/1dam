@@ -79,7 +79,7 @@
 					<td
 						th:text="${#numbers.formatDecimal(pedido.precioFinal, 1, 2,'COMMA')} + '€'"></td>
 					<td><a href=""
-						th:href="@{/historico/detalles{id}(id=${pedido.id})}">Detalles</a></td>
+						th:href="@{/historico/detalles/{id}(id=${pedido.id})}">Detalles</a></td>
 				</tr>
 				<tr>
 					<td> </td>

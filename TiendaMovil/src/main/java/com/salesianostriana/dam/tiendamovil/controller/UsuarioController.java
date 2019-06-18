@@ -131,7 +131,7 @@ public class UsuarioController {
 		return 0.0;
 	}
 
-	@GetMapping("/historico/detalles{id}")
+	@GetMapping("/historico/detalles/{id}")
 	public String mostrarHistoricoLineaPedidos(@PathVariable("id") long id,
 			@RequestParam("pageSize") Optional<Integer> pageSize, @RequestParam("page") Optional<Integer> page,
 			Model model) {

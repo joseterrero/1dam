@@ -13,7 +13,7 @@
 	<artifactId>tiendamovil</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TiendaMovil</name>
-	<description>Proyecto final Jose Manuel Terrero Guillamón de una tienda online de moviles</description>
+	<description>Proyecto final de 1 DAM sobre una tienda online de moviles</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -48,7 +48,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
- 
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
