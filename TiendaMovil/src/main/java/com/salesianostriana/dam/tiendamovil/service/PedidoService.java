@@ -31,5 +31,9 @@ public class PedidoService extends BaseService<Pedido, Long, PedidoRepository> {
 	public Page<Pedido> findByUsuario(Usuario usuario, Pageable pageable) {
 		return pedidoRepo.findByUsuario(usuario, pageable);
 	}
+	
+//	public Page<Pedido> findAll(Usuario usuario, Pageable pageable) {
+//		return pedidoRepo.findAll(usuario, pageable);
+//	}
 
 }

@@ -4,7 +4,7 @@ ul.navbar-nav{
 
 .desplegable{
     text-align: right;
-    padding-left: 80%;
+    margin-left: 75%;
 }
 
 tr th:nth-child(n+2), tr td{
@@ -20,5 +20,5 @@ table{
 }
 
 .submenu{
-	margin-left: 89%;
+	margin-left: 0%;
 }

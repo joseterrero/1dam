@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://http://www.thymeleaf.org/">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description"
+	content="La mejor tienda online con los últimos productos a la venta y con las mejores ofertas del mercado. Aprovecha ya y hazte con ellas. Página de error." />
+<meta name="author" content="" />
+<title>Error</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container mt-5">
+		<div class="jumbotron alert-danger">
+			<h1 class="text-center">ERROR. No se puede borrar el usuario
+				actual.</h1>
+		</div>
+		<a href="usuariosAdmin.html" th:href="@{/admin/listUsuarios}">
+			<button id="volver" name="volver" class="btn btn-primary btn-sm">Atrás</button>
+		</a>
+	</div>
+</body>
+</html>

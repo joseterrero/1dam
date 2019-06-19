@@ -20,5 +20,7 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 	public List<Pedido> findById(long id);
 
 	public Page<Pedido> findById(long id, Pageable pageable);
+	
+//	public Page<Pedido> findAll(Usuario usuario, Pageable pageable);
 
 }

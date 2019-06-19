@@ -133,6 +133,10 @@ public class ProductoController {
 			@RequestParam("page") Optional<Integer> page, @RequestParam("modelo") Optional<String> modelo,
 			Model model) {
 		
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario u = (Usuario) usuarioService.findOneByUsername(user.getUsername());
+		session.setAttribute("usuarioActual", u);
+		
 		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 
 		// Evalúa el tamaño de página. Si el parámetro es "nulo", devuelve

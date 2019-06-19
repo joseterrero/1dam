@@ -92,6 +92,8 @@ public class UsuarioController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Usuario u = (Usuario) usuarioService.findOneByUsername(user.getUsername());
 		session.setAttribute("usuarioActual", u);
+		
+		model.addAttribute("usuario", session.getAttribute("usuarioActual"));
 
 		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;

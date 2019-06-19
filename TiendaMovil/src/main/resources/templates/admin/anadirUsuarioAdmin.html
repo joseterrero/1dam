@@ -15,7 +15,7 @@
 	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" th:href="@{../../css/añadirUsuarioAdmin.css}">
+<link rel="stylesheet" th:href="@{../css/añadirUsuarioAdmin.css}">
 </head>
 
 <body>
@@ -36,7 +36,7 @@
 						<div class="">
 							<input id="nombre" name="nombre" type="text"
 								placeholder="Ej: Pepe" class="form-control input-md" required
-								th:field="*{nombre}" pattern="[A-Za-z]">
+								th:field="*{nombre}">
 						</div>
 					</div>
 
@@ -48,7 +48,7 @@
 						<div class="">
 							<input id="apellidos" name="apellidos" type="text"
 								placeholder="Ej: Pérez" class="form-control input-md" required
-								th:field="*{apellidos}" pattern="[A-Za-z]">
+								th:field="*{apellidos}">
 						</div>
 					</div>
 
@@ -139,6 +139,9 @@
 
 			</fieldset>
 		</form>
+		<a href="usuariosAdmin.html" th:href="@{/admin/listUsuarios}">
+			<button id="volver" name="volver" class="btn btn-primary btn-sm">Atrás</button>
+		</a>
 	</div>
 
 	<!-- Optional JavaScript -->

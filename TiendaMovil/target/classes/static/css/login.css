@@ -1,5 +1,6 @@
 fieldset {
 	border: 1px solid black;
+	margin-left: 3%;
 }
 
 legend {
@@ -8,8 +9,8 @@ legend {
 
 footer {
 	clear: both;
-	color: black;
-	background-color: grey;
+	color: white;
+	background-color: black;
 }
 
 footer p{
@@ -21,8 +22,10 @@ body {
 }
 
 .fondo{
-	width: 60%;
-	padding-left: 4%;
+	width: 40%;
+	margin-left: 15%;
+	height: 550px;
+	margin-top: 7%;
 }
 
 form{

@@ -51,7 +51,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 		if (isAdmin(roles)) {
 			url = "/admin/listProductos";
 		} else if (isUser(roles)) {
-			url = "/";
+			url = "/list";
 		} else {
 			url = "/acceso-denegado";
 		}
